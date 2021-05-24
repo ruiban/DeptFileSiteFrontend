@@ -212,10 +212,12 @@ export default{
 		
 	},
 	methods: {
+		//文件列表改变
 		handleChange(file){
 			console.log(file);
 			this.filelist = [];
 			this.form.file = file.raw;
+			//推入新文件到fileList
 			this.filelist.push({
 				name: file.name,
 				url: ''

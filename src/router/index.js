@@ -7,7 +7,8 @@ import FileUpload from '@/components/FileUpload'
 import UserManagen from '@/components/UserManagen'
 import FileArchive from '@/components/FileArchive'
 import Temperature from '@/components/Temperature'
-import ImageUpload from '@/components/ImageUpload'
+import PlanningList from '@/components/PlanningList'
+import CreatePlanning from '../components/CreatePlanning'
 
 
 Vue.use(Router)
@@ -22,11 +23,13 @@ const router = new Router({
         },
         {
             path: '/home',
+            redirect: '/fileList',
             name: '部门发文',
             component: Home,
             iconCls: 'el-icon-folder',
             meta: {
-                requireAuth: true
+                requireAuth: true,
+                breadcrumb: '首页'
             },
             children: [
                 {
@@ -35,7 +38,8 @@ const router = new Router({
                     component: FileList,
                     meta: {
                         keepAlive: true,
-                        requireAuth: true
+                        requireAuth: true,
+                        breadcrumb: '文档列表'
                     }
                 },
                 {
@@ -44,7 +48,8 @@ const router = new Router({
                     component: FileUpload,
                     meta: {
                         keepAlive: false,
-                        requireAuth: true
+                        requireAuth: true,
+                        breadcrumb: '上传文档'
                     }
                 }
 
@@ -57,7 +62,8 @@ const router = new Router({
             name: '首页',
             component: Home,
             meta: {
-                requireAuth: true
+                requireAuth: true,
+                breadcrumb: '首页'
             },
             children: [
                 {
@@ -66,7 +72,8 @@ const router = new Router({
                     iconCls: 'el-icon-s-data',
                     component: Temperature,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        breadcrumb: '体温记录'
                     }
                 }
             ]
@@ -78,7 +85,8 @@ const router = new Router({
             name: '首页',
             component: Home,
             meta: {
-                requireAuth: true
+                requireAuth: true,
+                breadcrumb: '首页'
             },
             children: [
                 {
@@ -87,7 +95,8 @@ const router = new Router({
                     iconCls: 'el-icon-user',
                     component: UserManagen,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        breadcrumb: '用户管理'
                     }
                 }
             ]
@@ -95,42 +104,59 @@ const router = new Router({
 
         {
             path: '/home',
-            name: '首页',
+            name: '产品策划',
+            iconCls: 'el-icon-s-marketing',
             component: Home,
             meta: {
-                requireAuth: true
+                requireAuth: true,
+                breadcrumb: '产品策划'
             },
             children: [
                 {
-                    path: '/image',
-                    name: '图片上传',
+                    path: '/planning_list',
+                    name: '策划列表',
                     iconCls: 'el-icon-s-marketing',
-                    component: ImageUpload,
+                    component: PlanningList,
+                    meta: {
+                        requireAuth: true,
+                        breadcrumb: '策划列表'
+                    },
+                    children: [
+                        {
+                            path:"planning/:id",
+                            hidden: true,
+                            name:'策划详情',
+                            meta: {
+                                title: "策划详情",
+                                breadcrumb: '策划详情'
+                            },
+                            component: (resolve) => require(['../components/PlanningDetail.vue'], resolve)
+                        }
+                    ]
+
+                },
+                {
+                    path: '/planning_create',
+                    name: '新建策划',
+                    iconCls: 'el-icon-s-marketing',
+                    component: CreatePlanning,
+                    meta: {
+                        requireAuth: true,
+                        breadcrumb: '新建策划'
+                    }
+
+                },
+                {
+                    path: 'planning_setting',
+                    name: '管理入口',
+                    iconCls: 'el-icon-user',
                     meta: {
                         requireAuth: true
                     }
                 }
             ]
         },
-        /*{
-            path: '/home',
-            name: '文件归档',
-            component: Home,
-            meta:{
-                requireAuth: true
-            },
-            children: [
-                {
-                    path: '/archive',
-                    name: '文件归档',
-                    iconCls: 'el-icon-folder-opened',
-                    component: FileArchive,
-                    meta:{
-                        requireAuth: true
-                    }
-                }
-            ]
-        },*/
+        
 
     ]
 })
