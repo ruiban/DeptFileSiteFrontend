@@ -1,7 +1,7 @@
 <template>
-  <div class="planning_detail">
+  <div class="planning_edit">
     <h1>策划详情</h1>
-    <div class="planning_detail_container">
+    <div class="planning_edit_container">
       <el-form
         v-model="detail_form"
         label-position="left"
@@ -9,12 +9,11 @@
         label-width="80px"
         class="detail_form"
         size="small"
-        :disabled="edit"
       >
         <el-row>
           <el-col :lg="4" :md="8" :xs="24">
             <el-form-item label="品牌">
-              <el-input v-model="detail_form.brand"> </el-input>
+              <el-input v-model="detail_form.brand" :readonly="true"> </el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="4" :md="8" :xs="24">
@@ -455,7 +454,7 @@ h1 {
 .text-center {
   text-align: center;
 }
-.planning_detail_container /deep/ .file__upload {
+.planning_edit_container /deep/ .file__upload {
   text-align: right;
 }
 </style>
