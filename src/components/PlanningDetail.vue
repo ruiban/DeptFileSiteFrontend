@@ -129,7 +129,7 @@
     </el-card>
     <el-card class="box-card image_card">
       <div slot="header" class="clearfix">
-        <span>外观图片</span>
+        <h1>外观图片</h1>
       </div>
       <el-upload
         ref="imageUpload"
@@ -183,7 +183,7 @@
 
     <el-card class="box-card member_card">
       <div slot="header" class="clearfix">
-        <h1>策划详情</h1>
+        <h1>成员名单</h1>
       </div>
 
       <!-- 第一行 -->
@@ -254,6 +254,25 @@
         <el-col :span="6">
           <div class="grid-content bg-purple">
             <span>产品策划负责人：</span>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="80" class="left">
+        <el-col :span="6">
+          <div class="grid-content bg-purple">
+            <span>遥控器负责人主任：</span>
+            <span>{{ planning_detail.name }}</span>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple">
+            <span>智能板块负责人主任：</span>
+            <span>{{ planning_detail.brand }}</span>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="grid-content bg-purple">
+            <span>产品策划负责人主任：</span>
           </div>
         </el-col>
       </el-row>
