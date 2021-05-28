@@ -123,14 +123,25 @@ const router = new Router({
                     },
                     children: [
                         {
-                            path:"planning/:id",
+                            path:"planning_edit/:id",
                             hidden: true,
-                            name:'策划详情',
+                            name:'策划编辑',
+                            meta: {
+                                title: "策划编辑",
+                                breadcrumb: '策划编辑'
+                            },
+                            component: (resolve) => require(['../components/PlanningEdit.vue'], resolve)
+                        },
+                        {
+                            path:"planning_detail/:id",
+                            hidden: true,
+                            name: '策划详情',
                             meta: {
                                 title: "策划详情",
                                 breadcrumb: '策划详情'
                             },
                             component: (resolve) => require(['../components/PlanningDetail.vue'], resolve)
+
                         }
                     ]
 
@@ -146,14 +157,6 @@ const router = new Router({
                     }
 
                 },
-                {
-                    path: 'planning_setting',
-                    name: '管理入口',
-                    iconCls: 'el-icon-user',
-                    meta: {
-                        requireAuth: true
-                    }
-                }
             ]
         },
         

@@ -198,11 +198,13 @@
         />
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <router-link :to="'/planning_list/planning/' + scope.row.id"
+            <router-link :to="'/planning_list/planning_detail/' + scope.row.id"
               >详情</router-link
             >
             |
-            <a :href="scope.row.id">编辑</a>
+            <router-link :to="'/planning_list/planning_edit/' + scope.row.id">
+            编辑
+            </router-link>
           </template>
         </el-table-column>
       </el-table>
