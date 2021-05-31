@@ -150,12 +150,11 @@ const router = new Router({
                     path: '/planning_create',
                     name: '新建策划',
                     iconCls: 'el-icon-s-marketing',
-                    component: CreatePlanning,
                     meta: {
                         requireAuth: true,
                         breadcrumb: '新建策划'
-                    }
-
+                    },
+                    component: (resolve) => require(['../components/PlanningEdit.vue'], resolve)
                 },
             ]
         },

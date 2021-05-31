@@ -154,14 +154,12 @@
               <i class="el-icon-zoom-in"> </i>
             </span>
             <span
-              v-if="!disabled"
               class="el-upload-list__item-delete"
               @click="handleDownload(file)"
             >
               <i class="el-icon-download"></i>
             </span>
             <span
-              v-if="!disabled"
               class="el-upload-list__item-delete"
               @click="handleRemove(file)"
             >
@@ -277,6 +275,27 @@
         </el-col>
       </el-row>
     </el-card>
+
+    <el-card class="box-card file_card">
+      <div slot="header" class="clearfix">
+        <h1>时间节点</h1>
+      </div>
+      <!-- 第一行 -->
+      <el-row :gutter="80" class="left">
+        <el-col :span="12">
+          <div class="grid-content bg-purple">
+            <span>项目负责人：</span>
+            <span>{{ planning_detail.name }}</span>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content bg-purple">
+            <span>印刷板块负责人：</span>
+            <span>{{ planning_detail.brand }}</span>
+          </div>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 
@@ -288,6 +307,9 @@ export default {
       params: {
         id: parseInt(this.$route.params.id),
       },
+      dialogVisible: false,
+      dialogImageUrl: '',
+      dialogImageName: '',
       planning_detail: {
         name: "",
         brand: "",
@@ -314,11 +336,22 @@ export default {
         // this.planning_detail = records;
       });
     },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+      this.dialogImageName = file.name;
+    },
+    changeImage() {
+      console.log("change");
+    },
   },
 };
 </script>
 
 <style scoped>
+.el-card {
+  margin-bottom: 20px;
+}
 .detail_container {
   margin-top: 40px;
   margin-bottom: 20px;

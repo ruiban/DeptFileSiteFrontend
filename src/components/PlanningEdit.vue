@@ -1,6 +1,7 @@
 <template>
   <div class="planning_edit">
-    <h1>策划详情</h1>
+    <h1 v-if="edit">策划详情</h1>
+    <h1 v-else>新建策划</h1>
     <div class="planning_edit_container">
       <el-form
         v-model="detail_form"
@@ -13,7 +14,8 @@
         <el-row>
           <el-col :lg="4" :md="8" :xs="24">
             <el-form-item label="品牌">
-              <el-input v-model="detail_form.brand" :readonly="true"> </el-input>
+              <el-input v-model="detail_form.brand" :readonly="true">
+              </el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="4" :md="8" :xs="24">
@@ -106,7 +108,6 @@
           </el-col>
         </el-row>
         <!-- 图片上传 -->
-        <img src="http://localhost:8081/images/纯爱.jpg" alt="">
         <el-row>
           <el-col :span="22">
             <el-form-item label="外观图片" class="image__upload">
@@ -125,7 +126,7 @@
 
                 <div slot="file" slot-scope="{ file }">
                   <img
-                    :src="file.path"
+                    :src="file.url"
                     alt=""
                     class="el-upload-list__item-thumbnail"
                   />
@@ -281,16 +282,43 @@
             </el-form-item>
           </el-col>
           <el-col :lg="7" :md="24">
-            <el-form-item label="外观任务单下发时间" label-width="200px">
+            <el-form-item label="产品策划方案书下发时间" label-width="200px">
               <el-date-picker type="date" placeholder="选择日期">
               </el-date-picker>
+            </el-form-item>
+            <el-form-item label="已完成">
+              <el-switch></el-switch>
             </el-form-item>
           </el-col>
-          <el-col :lg="7" :md="24">
-            <el-form-item label="外观任务单下发时间" label-width="200px">
-              <el-date-picker type="date" placeholder="选择日期">
-              </el-date-picker>
-            </el-form-item>
+          <el-col :lg="7">
+            <el-row>
+              <el-col>
+                <el-form-item
+                  label="产品策划方案书下发时间"
+                  label-width="200px"
+                >
+                  <el-date-picker type="date" placeholder="选择日期">
+                  </el-date-picker>
+                </el-form-item>
+                <el-form-item label="已完成">
+                  <el-switch></el-switch>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col>
+                <el-form-item
+                  label="产品策划方案书下发时间"
+                  label-width="200px"
+                >
+                  <el-date-picker type="date" placeholder="选择日期">
+                  </el-date-picker>
+                </el-form-item>
+                <el-form-item label="已完成">
+                  <el-switch></el-switch>
+                </el-form-item>
+              </el-col>
+            </el-row>
           </el-col>
         </el-row>
         <el-form-item>
@@ -312,11 +340,10 @@ export default {
       dialogVisible: false,
       disabled: false,
       dialogImageName: "",
-      edit: true,
-      id: parseInt(this.$route.params.id),
+      edit: false,
       product: null,
       params: {
-        id: 1,
+        id: parseInt(this.$route.params.id),
       },
       detail_form: {
         name: "",
@@ -358,9 +385,16 @@ export default {
       },
     };
   },
+  beforeCreate: function () {
+    if (id) {
+      this.edit = true;
+    }
+  },
   mounted: function () {
     console.log("id:" + this.id);
-    this.postPlanning();
+    if (id) {
+      this.postPlanning();
+    }
   },
   methods: {
     postPlanning() {
@@ -371,9 +405,7 @@ export default {
         this.handleHttpRequest();
       });
     },
-    postImage() {
-      
-    },
+    postImage() {},
     //图片列表改变钩子
     changeImage(image, imageList) {
       let imageName = image.name;
