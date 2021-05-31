@@ -154,7 +154,7 @@ const router = new Router({
                         requireAuth: true,
                         breadcrumb: '新建策划'
                     },
-                    component: (resolve) => require(['../components/PlanningEdit.vue'], resolve)
+                    component: (resolve) => require(['../components/Planning/PlanningCreateMain.vue'], resolve)
                 },
             ]
         },
