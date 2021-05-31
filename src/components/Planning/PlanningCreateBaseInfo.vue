@@ -113,42 +113,30 @@
 <script>
 export default {
   name: "PlanningCreateBaseInfo",
+  props: {
+    data: {
+      type: Object,
+      default: ()=>({})
+    }
+  },
   data() {
     return {
       formData: {
-        channel_options: [
-          {
-            value: "线下普通渠道",
-            label: "线下普通渠道",
-            children: [
-              {
-                value: "线下普通渠道",
-                label: "线下普通渠道",
-              },
-            ],
-          },
-          {
-            value: "线下专供渠道",
-            label: "线下专供渠道",
-            children: [
-              {
-                value: "苏宁卖场",
-                label: "苏宁卖场",
-              },
-              {
-                value: "国美卖场",
-                label: "国美卖场",
-              },
-            ],
-          },
-        ],
+
       },
       rules: {
         name: [{ required: true, message: "请输入名称", trigger: "blur" }],
       },
     };
   },
-
+  watch: {
+    data: {
+      handler(newValue) {
+        this.formData = easyClone(newValue) || {}
+      },
+      immediate: true
+    }
+  },
   methods: {
     validForm() {
       let result = false;
