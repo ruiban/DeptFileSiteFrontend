@@ -1,6 +1,6 @@
 <template>
   <div class="planningCreateImage">
-    <el-card class="box-card">
+    <el-card class="box-card image_card">
       <div class="text item">
         <el-form
           ref="form"
@@ -140,5 +140,29 @@ export default {
 <style scoped>
 .planningCreateImage {
   margin-bottom: 20px;
+}
+/* .image_card /deep/ .el-upload--picture-card {
+  display: none;
+} */
+.image_card /deep/ .el-upload--picture-card {
+  height: 360px;
+  width: 340px;
+  line-height: 360px;
+}
+.image_card /deep/ .el-form-item__content {
+  /* border: solid 2px #dcdfe6; */
+  padding: 2px;
+  /* text-align: left; */
+}
+.image_card /deep/ .el-upload-list__item {
+  height: 360px;
+  width: 340px;
+}
+.image_card /deep/ .el-upload-list__item-thumbnail {
+  width: 340px;
+  height: 330px;
+}
+.image_card /deep/ .el-upload-list__item-actions {
+  height: 330px;
 }
 </style>
