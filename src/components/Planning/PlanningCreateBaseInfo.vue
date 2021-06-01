@@ -111,41 +111,19 @@
 </template>
 
 <script>
+import SuperFormMixin from "@/mixins/super-form-mixin";
 export default {
   name: "PlanningCreateBaseInfo",
-  props: {
-    data: {
-      type: Object,
-      default: ()=>({})
-    }
-  },
+  mixins: [SuperFormMixin],
   data() {
     return {
-      formData: {
-
-      },
+      formData: {},
       rules: {
         name: [{ required: true, message: "请输入名称", trigger: "blur" }],
       },
     };
   },
-  watch: {
-    data: {
-      handler(newValue) {
-        this.formData = easyClone(newValue) || {}
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    validForm() {
-      let result = false;
-      this.$refs["form"].validate((valid) => {
-        result = valid;
-      });
-      return result;
-    },
-  },
+  methods: {},
 };
 </script>
 
