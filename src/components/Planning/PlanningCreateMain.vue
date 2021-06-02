@@ -8,7 +8,7 @@
     <planning-create-image ref="form2" :data="formDataMap.form2" />
     <el-button type="primary" @click="handleSave">保存</el-button>
     <div class="anchor-wrapper">
-      <anchor :page-block="pageBlock" />
+      <anchor />
     </div>
   </div>
 </template>
@@ -16,13 +16,15 @@
 import PlanningCreateBaseInfo from "../Planning/PlanningCreateBaseInfo.vue";
 import PlanningCreateImage from "../Planning/PlanningCreateImage.vue";
 import Anchor from "../Planning/Anchor.vue";
+import { postRequest } from "@/api/api";
+import { uploadFileRequest } from "@/api/api";
 export default {
   name: "PlanningCreateMain",
   // 组件
   components: {
     PlanningCreateBaseInfo,
     PlanningCreateImage,
-    Anchor
+    Anchor,
   },
   //data数据
   data() {
@@ -68,59 +70,75 @@ export default {
         this.$refs[formKey].validForm()
       );
       if (validResults.every((r) => r)) {
-        const formData = {};
+        const formData = new FormData();
+        let fullFormData = {}; 
         formKeys.map((formKey) => {
           const partFormData = this.$refs[formKey].formData;
-          Object.assign(formData, partFormData);
+          Object.assign(fullFormData, partFormData);
         });
-        console.log(formData);
+        Object.keys(fullFormData).forEach((key) => {
+          formData.append(key, fullFormData[key]);
+        });
+        formData.delete('image_list');
+        for (let i = 0; i < fullFormData.image_list.length; i++) {
+          formData.append("image_list", fullFormData.image_list[i].raw)
+        }
+        console.log(fullFormData);
+        uploadFileRequest("/planning/multipleImageUpload", formData).then(
+          () => {
+            console.log("end");
+          }
+        );
       } else {
         this.$message.warning("校验未通过");
       }
+    },
+    myUpload() {
+      console.log("myUpload");
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-  .planningCreaterMain {
-    position: relative;
-    width: 100%;
-    padding: 16px;
-    overflow-y: auto;
+.planningCreaterMain {
+  position: relative;
+  width: 100%;
+  padding: 16px;
+  overflow-y: auto;
+}
+.anchor-wrapper {
+  position: fixed;
+  background: pink;
+  right: 0;
+  width: 220px;
+  height: 300px;
+  top: 30%;
+  transform: translate(0, -50%);
+}
+div[data-section] {
+  position: relative;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px 0;
+  margin-left: 34px;
+  &::before {
+    content: attr(data-section);
   }
-  .anchor-wrapper {
-    position: fixed;
-    background: pink;
-    right: 0;
-    width: 220px;
-    height: 300px;
-    top: 30%;
-    transform: translate(0, -50%);
+}
+div[data-ismain] {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 28px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 14px;
+    width: 4px;
+    height: 16px;
+    background: #5c658d;
+    border-radius: 2px;
   }
-  div[data-section] {
-    position: relative;
-    text-align: left;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 14px 0;
-    margin-left: 34px;
-    &::before {
-      content: attr(data-section);
-    }
-  }
-  div[data-ismain] {
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 28px;
-    &::after {
-      content: '';
-      position: absolute;
-      left: -16px;
-      top: 14px;
-      width: 4px;
-      height: 16px;
-      background: #5c658d;
-      border-radius: 2px;
-    }
-  }
+}
 </style>

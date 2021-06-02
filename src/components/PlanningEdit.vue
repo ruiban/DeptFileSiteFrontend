@@ -332,7 +332,6 @@
 import { getRequest } from "../api/api";
 import { postRequest } from "../api/api";
 import { uploadFileRequest } from "../api/api";
-import axios from "axios";
 export default {
   data() {
     return {
@@ -427,7 +426,7 @@ export default {
       for (let i = 0; i < this.detail_form.image_list.length; i++) {
         formData.append("image_list", this.detail_form.image_list[i].raw);
       }
-      uploadFileRequest("/planning//multipleImageUpload", formData).then(() => {
+      uploadFileRequest("/planning/multipleImageUpload", formData).then(() => {
         console.log("ss");
       });
     },
