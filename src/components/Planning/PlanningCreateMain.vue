@@ -71,7 +71,7 @@ export default {
       );
       if (validResults.every((r) => r)) {
         const formData = new FormData();
-        let fullFormData = {}; 
+        let fullFormData = {};
         formKeys.map((formKey) => {
           const partFormData = this.$refs[formKey].formData;
           Object.assign(fullFormData, partFormData);
@@ -79,12 +79,14 @@ export default {
         Object.keys(fullFormData).forEach((key) => {
           formData.append(key, fullFormData[key]);
         });
-        formData.delete('image_list');
-        for (let i = 0; i < fullFormData.image_list.length; i++) {
-          formData.append("image_list", fullFormData.image_list[i].raw)
+        formData.delete("image_list");
+        if (fullFormData.image_list) {
+          for (let i = 0; i < fullFormData.image_list.length; i++) {
+            formData.append("image_list", fullFormData.image_list[i].raw);
+          }
         }
         console.log(fullFormData);
-        uploadFileRequest("/planning/multipleImageUpload", formData).then(
+        uploadFileRequest("/planning/insert", formData).then(
           () => {
             console.log("end");
           }
