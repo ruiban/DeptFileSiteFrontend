@@ -6,6 +6,7 @@
           ref="form"
           :model="formData"
           :rules="rules"
+          :disabled="formDisabled"
           label-width="80px"
           size="small"
         >
@@ -117,7 +118,9 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
-      formData: {},
+      formData: {
+        name: '1'
+      },
       rules: {
         name: [{ required: true, message: "请输入名称", trigger: "blur" }],
       },
@@ -131,7 +134,17 @@ export default {
 .planningCreateBaseInfo {
   margin-bottom: 20px;
 }
-
+.planningCreateBaseInfo /deep/ .is-disabled .el-input__inner{
+  cursor: text;
+  background: white;
+  border: none;
+}
+.planningCreateBaseInfo /deep/ .is-disabled .el-input__inner:hover{
+  border: solid 2px paleturquoise;
+}
+.planningCreateBaseInfo /deep/ .el-textarea.is-disabled .el-textarea__inner {
+  cursor: text;
+}
 .text {
   font-size: 14px;
 }
