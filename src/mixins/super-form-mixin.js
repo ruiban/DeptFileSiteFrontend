@@ -25,5 +25,11 @@ export default {
             this.$refs['form'].validate((valid) => { result = valid })
             return result
         }
-    }
+    },
+    computed: {
+        formDisabled() {
+            return this.formType === 'add'
+        }
+    },
+    inject: ['formType'],
 }

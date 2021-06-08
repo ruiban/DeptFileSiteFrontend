@@ -1,6 +1,5 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
-    <h1>新建策划</h1>
     <div data-section="基础信息" data-ismain></div>
     <div data-section="产品信息"></div>
     <planning-create-base-info ref="form1" :data="formDataMap.form1" />
@@ -26,9 +25,21 @@ export default {
     PlanningCreateImage,
     Anchor,
   },
+  props: {
+    formType: {
+      type: String,
+      default: 'add'
+    }
+  },
+  provide() {
+    return {
+      formType: this.formType
+    }
+  },
   //data数据
   data() {
     return {
+      pageBlock: null,
       formDataMap: {
         form1: {
           channel_options: [
@@ -61,6 +72,11 @@ export default {
         form2: {},
       },
     };
+  },
+  provide() {
+    return {
+      formType: this.formType
+    }
   },
   //methods方法
   methods: {

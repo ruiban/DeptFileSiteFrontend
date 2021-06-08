@@ -8,10 +8,11 @@
           :rules="rules"
           label-width="80px"
           size="small"
+          :disabled="formDisabled"
         >
           <el-row>
             <el-col :span="22">
-              <el-form-item label="外观图片" class="image__upload">
+              <el-form-item class="image__upload">
                 <el-upload
                   ref="imageUpload"
                   action="#"
@@ -78,8 +79,10 @@
 </template>
 
 <script>
+import SuperFormMixin from '@/mixins/super-form-mixin'
 export default {
   name: "PlanningCreaterImage",
+  mixins: [SuperFormMixin],
   data() {
     return {
       dialogImageUrl: "",
