@@ -12,9 +12,9 @@
   </div>
 </template>
 <script>
-import PlanningCreateBaseInfo from "../Planning/PlanningCreateBaseInfo.vue";
-import PlanningCreateImage from "../Planning/PlanningCreateImage.vue";
-import Anchor from "../Planning/Anchor.vue";
+import PlanningCreateBaseInfo from "./PlanningCreateBaseInfo.vue";
+import PlanningCreateImage from "./PlanningCreateImage.vue";
+import Anchor from "./Anchor.vue";
 import { postRequest } from "@/api/api";
 import { uploadFileRequest } from "@/api/api";
 export default {
@@ -28,13 +28,13 @@ export default {
   props: {
     formType: {
       type: String,
-      default: 'add'
-    }
+      default: "add",
+    },
   },
   provide() {
     return {
-      formType: this.formType
-    }
+      formType: this.formType,
+    };
   },
   //data数据
   data() {
@@ -75,8 +75,8 @@ export default {
   },
   provide() {
     return {
-      formType: this.formType
-    }
+      formType: this.formType,
+    };
   },
   //methods方法
   methods: {
@@ -102,11 +102,9 @@ export default {
           }
         }
         console.log(fullFormData);
-        uploadFileRequest("/planning/insert", formData).then(
-          () => {
-            console.log("end");
-          }
-        );
+        uploadFileRequest("/planning/insert", formData).then(() => {
+          console.log("end");
+        });
       } else {
         this.$message.warning("校验未通过");
       }
@@ -118,15 +116,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.planningCreaterMain {
+.planningCreateMain {
   position: relative;
   width: 100%;
   padding: 16px;
-  overflow-y: auto;
+  margin-top: 20px;
 }
 .anchor-wrapper {
   position: fixed;
-  background: pink;
+  // background: grey;
+  opacity: 0.5;
   right: 0;
   width: 220px;
   height: 300px;

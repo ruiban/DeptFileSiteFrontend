@@ -1,6 +1,6 @@
 <template>
   <div class="planningCreateImage">
-    <el-card class="box-card image_card">
+    <div class="box-card image_card">
       <div class="text item">
         <el-form
           ref="form"
@@ -18,6 +18,7 @@
                   action="#"
                   list-type="picture-card"
                   :on-preview="handlePictureCardPreview"
+                  :on-remove="handleRemove"
                   :auto-upload="false"
                   :on-change="changeImage"
                   multiple
@@ -54,9 +55,14 @@
                         <i class="el-icon-delete"></i>
                       </span>
                     </span>
-                    <div class="text-center">
-                      <span> {{ file.name }}</span>
-                    </div>
+                    <el-tooltip
+                      class="item"
+                      effect="dark"
+                      placement="bottom"
+                    >
+                      <div slot="content">{{ file.name }}</div>
+                      <el-button class="file_name">{{ file.name }}</el-button>
+                    </el-tooltip>
                   </div>
                   <div slot="tip" class="el-upload__tip">
                     只能上传jpg/png/gif文件，且不超过10mb。
@@ -74,12 +80,12 @@
           </el-row>
         </el-form>
       </div>
-    </el-card>
+    </div>
   </div>
 </template>
 
 <script>
-import SuperFormMixin from '@/mixins/super-form-mixin'
+import SuperFormMixin from "@/mixins/super-form-mixin";
 export default {
   name: "PlanningCreaterImage",
   mixins: [SuperFormMixin],
@@ -95,7 +101,7 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      console.log(file);
+      console.log(file, this.formData.images);
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
@@ -149,16 +155,17 @@ export default {
 } */
 .image_card /deep/ .el-upload--picture-card {
   height: 360px;
+  margin-left: 20px;
   width: 340px;
   line-height: 360px;
 }
 .image_card /deep/ .el-form-item__content {
   /* border: solid 2px #dcdfe6; */
   padding: 2px;
-  /* text-align: left; */
+  text-align: left;
 }
 .image_card /deep/ .el-upload-list__item {
-  height: 360px;
+  height: 380px;
   width: 340px;
 }
 .image_card /deep/ .el-upload-list__item-thumbnail {
@@ -167,5 +174,19 @@ export default {
 }
 .image_card /deep/ .el-upload-list__item-actions {
   height: 330px;
+}
+.text-center {
+  text-align: center;
+}
+.image_card /deep/ .el-upload-list__item .file_name{
+  width: 100%;
+  display: block;
+}
+.image_card /deep/ .el-upload-list__item .file_name span{
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

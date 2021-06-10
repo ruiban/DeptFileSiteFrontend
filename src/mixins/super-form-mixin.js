@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         formDisabled() {
-            return this.formType === 'add'
+            return this.formType === 'detail'
         }
     },
     inject: ['formType'],

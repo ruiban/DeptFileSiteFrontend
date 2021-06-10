@@ -33,7 +33,7 @@ export default {
   margin: 8px 0;
   font-size: 14px;
   font-weight: bold;
-  color: #555;
+  color: black;
   cursor: pointer;
   &::before {
     content: attr(label);
@@ -46,7 +46,7 @@ export default {
   margin: 8px 0;
   padding-left: 22px;
   font-size: 14px;
-  color: #666;
+  color: gray;
   cursor: pointer;
   &::before {
     content: attr(label);

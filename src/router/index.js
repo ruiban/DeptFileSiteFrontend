@@ -140,7 +140,7 @@ const router = new Router({
                                 title: "策划详情",
                                 breadcrumb: '策划详情'
                             },
-                            component: (resolve) => require(['../components/PlanningDetail.vue'], resolve)
+                            component: (resolve) => require(['../components/Planning/detail/index.vue'], resolve)
 
                         }
                     ]
@@ -154,7 +154,7 @@ const router = new Router({
                         requireAuth: true,
                         breadcrumb: '新建策划'
                     },
-                    component: (resolve) => require(['../components/Planning/Planningindex.vue'], resolve)
+                    component: (resolve) => require(['../components/Planning/add/index.vue'], resolve)
                 },
             ]
         },
