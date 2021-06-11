@@ -23,7 +23,7 @@
                   :on-change="changeImage"
                   multiple
                   :http-request="myUpload"
-                  :file-list="fileList"
+                  :file-list="formData.imageList"
                 >
                   <i slot="default" class="el-icon-plus"></i>
 
@@ -99,11 +99,8 @@ export default {
     };
   },
   methods: {
-    handleRemove(file) {
-      let fileList = this.$refs.imageUpload.uploadFiles;
-      console.log(fileList);
-      let index = fileList.findIndex(fileItem=> {return fileItem.uid === file.uid})
-      fileList.splice(index, 1);
+    handleRemove(file, fileList) {
+      console.log(file, this.formData.imageList);
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;

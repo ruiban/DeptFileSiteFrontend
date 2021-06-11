@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .planningCreateBaseInfo {
-  margin-left: 40px;
+  margin-right: 40px;
   margin-bottom: 20px;
 }
 .planningCreateBaseInfo /deep/ .is-disabled .el-input__inner {

@@ -101,7 +101,6 @@ export default {
   methods: {
     handleRemove(file) {
       let fileList = this.$refs.imageUpload.uploadFiles;
-      console.log(fileList);
       let index = fileList.findIndex(fileItem=> {return fileItem.uid === file.uid})
       fileList.splice(index, 1);
     },

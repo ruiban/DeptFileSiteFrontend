@@ -23,7 +23,7 @@
                   :on-change="changeImage"
                   multiple
                   :http-request="myUpload"
-                  :file-list="fileList"
+                  :file-list="formData.imageList"
                 >
                   <i slot="default" class="el-icon-plus"></i>
 
@@ -55,7 +55,11 @@
                         <i class="el-icon-delete"></i>
                       </span>
                     </span>
-                    <el-tooltip class="item" effect="dark" placement="bottom">
+                    <el-tooltip
+                      class="item"
+                      effect="dark"
+                      placement="bottom"
+                    >
                       <div slot="content">{{ file.name }}</div>
                       <el-button class="file_name">{{ file.name }}</el-button>
                     </el-tooltip>
@@ -92,18 +96,14 @@ export default {
       dialogImageName: "",
       disabled: false,
       rules: {},
-      fileList: [],
       formData: {
-        images: [],
+        images:[],
       },
     };
   },
   methods: {
-    handleRemove(file) {
-      let fileList = this.$refs.imageUpload.uploadFiles;
-      console.log(fileList);
-      let index = fileList.findIndex(fileItem=> {return fileItem.uid === file.uid})
-      fileList.splice(index, 1);
+    handleRemove(file, fileList) {
+      console.log(file,this.formData.imageList);
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
@@ -118,7 +118,7 @@ export default {
       let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
       if (regex.test(imageName.toLowerCase())) {
         this.formData.imageList = imageList;
-        console.log(this.formData.imageList);
+        console.log(this.formData.imageList)
       } else {
         this.$message.error("请选择图片文件");
       }
@@ -134,11 +134,9 @@ export default {
       for (let i = 0; i < this.formData.imageList.length; i++) {
         postFormData.append("imageList", this.formData.imageList[i].raw);
       }
-      uploadFileRequest("/planning//multipleImageUpload", postFormData).then(
-        () => {
-          console.log("ss");
-        }
-      );
+      uploadFileRequest("/planning//multipleImageUpload", postFormData).then(() => {
+        console.log("ss");
+      });
     },
     validForm() {
       let result = false;
@@ -183,11 +181,11 @@ export default {
 .text-center {
   text-align: center;
 }
-.image_card /deep/ .el-upload-list__item .file_name {
+.image_card /deep/ .el-upload-list__item .file_name{
   width: 100%;
   display: block;
 }
-.image_card /deep/ .el-upload-list__item .file_name span {
+.image_card /deep/ .el-upload-list__item .file_name span{
   width: 100%;
   display: block;
   overflow: hidden;

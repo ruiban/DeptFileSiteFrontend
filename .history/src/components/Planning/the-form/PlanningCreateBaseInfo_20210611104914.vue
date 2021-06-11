@@ -10,27 +10,27 @@
         size="small"
       >
         <el-row :gutter="20">
-          <el-col :lg="4" :md="8" :xs="24">
+          <el-col :lg="12" :md="8" :xs="24">
             <el-form-item label="名称">
               <el-input v-model="formData.name"> </el-input>
             </el-form-item>
           </el-col>
-          <el-col :lg="4" :md="8" :xs="24">
+          <el-col :lg="12" :md="8" :xs="24">
             <el-form-item label="系列名称">
               <el-input v-model="formData.seriesName"> </el-input>
             </el-form-item>
           </el-col>
-          <el-col :lg="4" :md="8" :xs="24">
+          <el-col :lg="8" :md="8" :xs="24">
             <el-form-item label="品牌">
               <el-input v-model="formData.brand"> </el-input>
             </el-form-item>
           </el-col>
-          <el-col :lg="4" :md="8" :xs="24">
+          <el-col :lg="8" :md="8" :xs="24">
             <el-form-item label="产品代号">
               <el-input v-model="formData.productCode"> </el-input>
             </el-form-item>
           </el-col>
-          <el-col :lg="4" :md="8" :xs="24">
+          <el-col :lg="8" :md="8" :xs="24">
             <el-form-item label="产品型号">
               <el-input v-model="formData.productModel"> </el-input>
             </el-form-item>
@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .planningCreateBaseInfo {
-  margin-left: 40px;
+  margin-right: 40px;
   margin-bottom: 20px;
 }
 .planningCreateBaseInfo /deep/ .is-disabled .el-input__inner {

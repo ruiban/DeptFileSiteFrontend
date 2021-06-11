@@ -2,11 +2,16 @@
   <div ref="pageBlock" class="planningCreateMain">
     <div data-section="基础信息" data-ismain></div>
 
-    <div data-section="产品信息"></div>
-    <planning-create-base-info ref="form1" :data="formDataMap.form1" />
-
-    <div data-section="产品图片"></div>
-    <planning-create-image ref="form2" :data="formDataMap.form2" />
+    <el-row>
+      <el-col :lg="12">
+        <div data-section="产品信息"></div>
+        <planning-create-base-info ref="form1" :data="formDataMap.form1" />
+      </el-col>
+      <el-col :lg="12">
+        <div data-section="产品图片"></div>
+        <planning-create-image ref="form2" :data="formDataMap.form2" />
+      </el-col>
+    </el-row>
 
     <el-button type="primary" @click="handleSave">保存</el-button>
     <div class="anchor-wrapper">
