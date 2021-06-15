@@ -23,7 +23,7 @@
                   :on-change="changeImage"
                   multiple
                   :http-request="myUpload"
-                  :file-list="imageList"
+                  :file-list="fileList"
                 >
                   <i slot="default" class="el-icon-plus"></i>
 
@@ -92,7 +92,7 @@ export default {
       dialogImageName: "",
       disabled: false,
       rules: {},
-      imageList: [],
+      fileList: [],
       formData: {
         imageList: [],
       },
@@ -106,7 +106,6 @@ export default {
         return fileItem.uid === file.uid;
       });
       fileList.splice(index, 1);
-      this.imageList = fileList;
       this.formData.imageList = fileList;
       console.log(this.formData);
     },
@@ -119,26 +118,26 @@ export default {
       console.log(file);
     },
     changeImage(file, fileList) {
+
       const { uid, raw, size } = file;
       console.log("file:", file);
       console.log("fileList:", fileList);
-      console.log("imageList:", this.imageList);
       let imageName = file.name;
       let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      const findCommonNameIndex = this.imageList.findIndex((item) => {
-        console.log("name:", item.name);
-        return item.name == imageName;
-      });
+      const findCommonNameIndex = this.fileList.findIndex(
+        (item) => {
+          console.log(item.name);
+          return item.name == imageName;
+          }
+      );
       if (findCommonNameIndex !== -1) {
         this.$message.warning("不能上传同名文件");
         const selectFileList = fileList.filter((item) => {
           return item.uid != uid;
         });
         console.log("selectFileList:", selectFileList);
-        this.imageList = selectFileList;
+        this.fileList = selectFileList;
         return;
-      } else {
-        this.imageList = fileList;
       }
       if (regex.test(imageName.toLowerCase())) {
         this.formData.imageList = this.$refs.imageUpload.uploadFiles;
@@ -147,7 +146,6 @@ export default {
         this.$message.error("请选择图片文件");
         return;
       }
-      
     },
     // 覆盖默认的上传行为
     myUpload() {

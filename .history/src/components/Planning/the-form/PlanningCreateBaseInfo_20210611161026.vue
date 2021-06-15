@@ -8,10 +8,11 @@
         :disabled="formDisabled"
         label-width="80px"
         size="small"
+        @validata="handleValidate"
       >
         <el-row :gutter="20">
           <el-col :lg="4" :md="8" :xs="24">
-            <el-form-item label="名称" prop="name"> 
+            <el-form-item label="名称">
               <el-input v-model="formData.name"> </el-input>
             </el-form-item>
           </el-col>
@@ -59,7 +60,7 @@
           </el-col>
           <el-col :lg="4" :md="8" :xs="24">
             <el-form-item label="产品定位">
-              <el-input v-model="formData.position"> </el-input>
+              <el-input v-model="formData.name"> </el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -119,6 +120,9 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
+      formData: {
+        
+      },
       rules: {
         name: [{ required: true, message: "请输入名称", trigger: "blur" }],
       },

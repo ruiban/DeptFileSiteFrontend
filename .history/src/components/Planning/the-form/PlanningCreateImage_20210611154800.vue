@@ -106,7 +106,6 @@ export default {
         return fileItem.uid === file.uid;
       });
       fileList.splice(index, 1);
-      this.imageList = fileList;
       this.formData.imageList = fileList;
       console.log(this.formData);
     },
@@ -137,8 +136,6 @@ export default {
         console.log("selectFileList:", selectFileList);
         this.imageList = selectFileList;
         return;
-      } else {
-        this.imageList = fileList;
       }
       if (regex.test(imageName.toLowerCase())) {
         this.formData.imageList = this.$refs.imageUpload.uploadFiles;
@@ -147,7 +144,6 @@ export default {
         this.$message.error("请选择图片文件");
         return;
       }
-      
     },
     // 覆盖默认的上传行为
     myUpload() {

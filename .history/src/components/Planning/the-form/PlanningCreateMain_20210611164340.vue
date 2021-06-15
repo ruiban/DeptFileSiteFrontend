@@ -101,7 +101,7 @@ export default {
         // 校验结束
         formData.delete("imageList");
         if (fullFormData.imageList) {
-          for (let i = 0; i < fullFormData.imageList.length; i++) {
+          for (let i = 0; i < fullFormData.image_list.length; i++) {
             formData.append("imageList", fullFormData.imageList[i].raw);
           }
         }

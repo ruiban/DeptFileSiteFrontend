@@ -99,10 +99,10 @@ export default {
           formData.append(key, fullFormData[key]);
         });
         // 校验结束
-        formData.delete("imageList");
-        if (fullFormData.imageList) {
-          for (let i = 0; i < fullFormData.imageList.length; i++) {
-            formData.append("imageList", fullFormData.imageList[i].raw);
+        formData.delete("image_list");
+        if (fullFormData.image_list) {
+          for (let i = 0; i < fullFormData.image_list.length; i++) {
+            formData.append("image_list", fullFormData.image_list[i].raw);
           }
         }
         console.log(fullFormData);

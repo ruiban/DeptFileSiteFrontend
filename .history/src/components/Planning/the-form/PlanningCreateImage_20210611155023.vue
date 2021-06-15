@@ -106,7 +106,6 @@ export default {
         return fileItem.uid === file.uid;
       });
       fileList.splice(index, 1);
-      this.imageList = fileList;
       this.formData.imageList = fileList;
       console.log(this.formData);
     },
