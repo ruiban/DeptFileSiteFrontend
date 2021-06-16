@@ -1,11 +1,11 @@
 <template>
   <div class="page">
-    <planning-create form-type="add" />
+    <planning-create-main form-type="detail" />
   </div>
 </template>
 
 <script>
-import PlanningCreate from "../the-form/PlanningCreate";
+import PlanningCreate from "../the-form";
 
 export default {
   components: { PlanningCreate },
@@ -15,6 +15,8 @@ export default {
 <style scoped>
 .page {
   position: relative;
-  width: 99%;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }
 </style>

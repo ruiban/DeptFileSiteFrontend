@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <planning-create form-type="add" />
+    <planning-create-main form-type="add" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import PlanningCreate from "../the-form/PlanningCreate";
 
 export default {
-  components: { PlanningCreate },
+  components: { PlanningCreateMain },
 };
 </script>
 

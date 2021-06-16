@@ -1,14 +1,14 @@
 <template>
   <div class="page">
-    <planning-create form-type="detail" />
+    <planning-create-main form-type="detail" />
   </div>
 </template>
 
 <script>
-import PlanningCreate from "../the-form";
+import PlanningCreateMain from "../the-form";
 
 export default {
-  components: { PlanningCreate },
+  components: { PlanningCreateMain },
 };
 </script>
 

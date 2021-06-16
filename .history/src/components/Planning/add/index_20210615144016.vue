@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <planning-create form-type="add" />
+    <planning-create-main form-type="add" />
   </div>
 </template>
 
