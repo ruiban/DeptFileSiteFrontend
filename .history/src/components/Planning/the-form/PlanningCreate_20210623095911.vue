@@ -60,7 +60,7 @@ export default {
   //methods方法
   async created() {
     // 根据页面类型获取数据
-    if (~["edit", "detail", "compare"].findIndex((i) => i === this.formType)) {
+    if (~["edit", "detail"].findIndex((i) => i === this.formType)) {
       this.postPlanning();
     } else {
       this.getDistributionChannelList();
@@ -77,6 +77,7 @@ export default {
         var _this = this;
         _this.formDataMap = this.resolveDataToMap(records);
         console.log("formDataMap", _this.formDataMap);
+        this.getDistributionChannelList();
       });
     },
     getDistributionChannelList() {
@@ -108,7 +109,7 @@ export default {
       // console.log("formDataMap", this.formDataMap);
     },
     resolveDataToMap(data) {
-      const form1 = {
+      let form1 = {
         name: data.name,
         brand: data.brand,
       };
@@ -116,7 +117,7 @@ export default {
       return { form1, form2 };
     },
     resolveDataToChannel(data) {
-      const form1 = {
+      let form1 = {
         channel_options: data
       };
       return {form1}
