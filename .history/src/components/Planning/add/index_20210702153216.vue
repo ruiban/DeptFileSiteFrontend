@@ -1,0 +1,21 @@
+<template>
+  <div class="page">
+    <planning-create-index form-type="add" />
+    <img src="/image/1.jpg" alt="">
+  </div>
+</template>
+
+<script>
+import PlanningCreateIndex from '../the-form/PlanningCreateIndex.vue';
+
+export default {
+  components: { PlanningCreateIndex },
+};
+</script>
+
+<style scoped>
+.page {
+  position: relative;
+  width: 99%;
+}
+</style>
