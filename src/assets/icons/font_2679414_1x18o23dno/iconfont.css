@@ -1,0 +1,83 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2679414 */
+  src: url('iconfont.woff2?t=1626656478128') format('woff2'),
+       url('iconfont.woff?t=1626656478128') format('woff'),
+       url('iconfont.ttf?t=1626656478128') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiaoshou:before {
+  content: "\e612";
+}
+
+.icon-xinpinshangshi:before {
+  content: "\e602";
+}
+
+.icon-xilie:before {
+  content: "\e603";
+}
+
+.icon-duoxilieqipaotu:before {
+  content: "\e626";
+}
+
+.icon-zhongmingming:before {
+  content: "\e63a";
+}
+
+.icon-chanpinxilie:before {
+  content: "\e699";
+}
+
+.icon-liangchan:before {
+  content: "\e60e";
+}
+
+.icon-pingshen:before {
+  content: "\e661";
+}
+
+.icon-allicon_tuijianshudan:before {
+  content: "\e62f";
+}
+
+.icon-xiliean:before {
+  content: "\e67a";
+}
+
+.icon-yangjishenpi:before {
+  content: "\e609";
+}
+
+.icon-kongtiao:before {
+  content: "\e6bf";
+}
+
+.icon-tuijian:before {
+  content: "\e600";
+}
+
+.icon-wodefangan:before {
+  content: "\e601";
+}
+
+.icon-fangan:before {
+  content: "\e683";
+}
+
+.icon-mingmingkongjian:before {
+  content: "\e773";
+}
+
+.icon-waiguan:before {
+  content: "\e63c";
+}
+

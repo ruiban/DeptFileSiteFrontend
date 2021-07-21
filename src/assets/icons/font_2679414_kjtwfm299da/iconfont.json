@@ -1,0 +1,135 @@
+{
+  "id": "2679414",
+  "name": "planningManagement",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5435969",
+      "name": "上架",
+      "font_class": "shangjia",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "568479",
+      "name": "销售",
+      "font_class": "xiaoshou",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "1540320",
+      "name": "新品上市 (1)",
+      "font_class": "xinpinshangshi",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "4742900",
+      "name": "系列",
+      "font_class": "xilie",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "10451681",
+      "name": "多系列气泡图",
+      "font_class": "duoxilieqipaotu",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "11121469",
+      "name": "重命名",
+      "font_class": "zhongmingming",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "11888671",
+      "name": "产品系列",
+      "font_class": "chanpinxilie",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "13378440",
+      "name": "量产",
+      "font_class": "liangchan",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "15317998",
+      "name": "评审",
+      "font_class": "pingshen",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "16570133",
+      "name": "all icon_推荐书单",
+      "font_class": "allicon_tuijianshudan",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "20078492",
+      "name": "系列案",
+      "font_class": "xiliean",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "22812300",
+      "name": "样机审批",
+      "font_class": "yangjishenpi",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "2382756",
+      "name": "空调",
+      "font_class": "kongtiao",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "5522968",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7226460",
+      "name": "方案",
+      "font_class": "wodefangan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11389709",
+      "name": "方案",
+      "font_class": "fangan",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "14353314",
+      "name": "命名空间",
+      "font_class": "mingmingkongjian",
+      "unicode": "e773",
+      "unicode_decimal": 59251
+    },
+    {
+      "icon_id": "21247157",
+      "name": "外观",
+      "font_class": "waiguan",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    }
+  ]
+}

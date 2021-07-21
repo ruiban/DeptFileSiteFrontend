@@ -1,0 +1,51 @@
+{
+  "id": "2679414",
+  "name": "planningManagement",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2382756",
+      "name": "空调",
+      "font_class": "kongtiao",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "5522968",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7226460",
+      "name": "方案",
+      "font_class": "wodefangan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11389709",
+      "name": "方案",
+      "font_class": "fangan",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "14353314",
+      "name": "命名空间",
+      "font_class": "mingmingkongjian",
+      "unicode": "e773",
+      "unicode_decimal": 59251
+    },
+    {
+      "icon_id": "21247157",
+      "name": "外观",
+      "font_class": "waiguan",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    }
+  ]
+}
