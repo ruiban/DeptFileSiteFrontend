@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1556528",
+      "name": "小组",
+      "font_class": "xiaozu",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "3146170",
+      "name": "部门",
+      "font_class": "bumen-",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "14901662",
+      "name": "职位",
+      "font_class": "zhiwei",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
       "icon_id": "5435969",
       "name": "上架",
       "font_class": "shangjia",
