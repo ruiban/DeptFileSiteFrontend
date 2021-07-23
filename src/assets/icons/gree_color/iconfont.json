@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "20094030",
+      "name": "格力logo",
+      "font_class": "gelilogo",
+      "unicode": "eab2",
+      "unicode_decimal": 60082
+    }
+  ]
+}
