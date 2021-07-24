@@ -1,14 +1,53 @@
 <template>
   <div class="distribution-channel-list">
+    <h1>品牌列表</h1>
     <el-card class="box-card header-box">
       <div class="box-title">
-        <span>品牌列表</span>
+        <span>销售渠道列表</span>
       </div>
       <div class="box-detail">
-        <span> 品牌列表，可以对现有品牌进行管理、编辑 </span>
+        <span>
+          销售渠道列表，可以修改产品策划页面中销售渠道的一、二级列表选项
+        </span>
       </div>
     </el-card>
-    <el-table :data="tableData" border class="listTable" stripe height="600px">
+    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+      <el-form-item label="名称">
+        <el-input v-model="formInline.user" placeholder="品牌名称"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button type="success" @click="dialogVisible = true">新建</el-button>
+        <el-dialog
+          title="新建品牌"
+          :visible.sync="dialogVisible"
+          width="30%"
+          :before-close="handleClose"
+        >
+          <el-form :model="newBrand">
+            <el-form-item label="名称">
+              <el-input v-model="newBrand.name" placeholder="品牌名称">
+              </el-input>
+            </el-form-item>
+            <el-form-item label="描述">
+              <el-input
+                type="textarea"
+                v-model="newBrand.desc"
+                placeholder="描述"
+              >
+              </el-input>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false"
+              >确 定</el-button
+            >
+          </span>
+        </el-dialog>
+      </el-form-item>
+    </el-form>
+    <el-table :data="tableData" border class="listTable" stripe>
       <el-table-column prop="date" label="品牌名称">
         <template slot-scope="scope">
           <el-input
@@ -24,11 +63,7 @@
       </el-table-column>
       <el-table-column prop="name" label="描述"> </el-table-column>
       <el-table-column prop="address" label="创建日期"> </el-table-column>
-      <el-table-column >
-        <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-          <el-button size="small">搜索</el-button>
-        </template>
+      <el-table-column prop="edit" label="操作">
         <template slot-scope="scope">
           <el-button
             type="primary"

@@ -24,10 +24,9 @@
       </el-table-column>
       <el-table-column prop="name" label="描述"> </el-table-column>
       <el-table-column prop="address" label="创建日期"> </el-table-column>
-      <el-table-column >
+      <el-table-column prop="edit" label="操作">
         <template slot="header" slot-scope="scope">
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-          <el-button size="small">搜索</el-button>
         </template>
         <template slot-scope="scope">
           <el-button

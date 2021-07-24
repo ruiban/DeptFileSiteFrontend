@@ -91,13 +91,33 @@
           <el-input v-model="form.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <el-table :data="tableData" style="width: 50%">
-        <el-table-column prop="name" label="名称">
-        </el-table-column>
-        <el-table-column prop="address" label="操作">
-          <span>删除</span>
-        </el-table-column>
-      </el-table>
+      <el-table
+        :data="tableData"
+        border
+        class="listTable"
+        stripe
+        height="600px"
+      >
+
+    <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="date"
+        label="日期"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址">
+      </el-table-column>
+    </el-table>
+  
     </el-dialog>
   </div>
 </template>

@@ -21,25 +21,6 @@
           <el-card class="box-card channel-box">
             <div slot="header" class="clearfix channel_header">
               <span>线下普通渠道</span>
-              <el-button
-                @click="dialogTableVisible = true"
-                style="float: right; padding: 3px 0"
-                type="text"
-                >编辑</el-button
-              >
-            </div>
-
-            <div v-for="o in 6" :key="o" class="text item">
-              {{ "列表内容 " + o }}
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <el-card class="box-card channel-box">
-            <div slot="header" class="clearfix channel_header">
-              <span>线下专供渠道</span>
               <el-button style="float: right; padding: 3px 0" type="text"
                 >编辑</el-button
               >
@@ -55,7 +36,7 @@
         <div class="grid-content bg-purple">
           <el-card class="box-card channel-box">
             <div slot="header" class="clearfix channel_header">
-              <span>线上专供渠道</span>
+              <span>线下普通渠道</span>
               <el-button style="float: right; padding: 3px 0" type="text"
                 >编辑</el-button
               >
@@ -71,7 +52,23 @@
         <div class="grid-content bg-purple">
           <el-card class="box-card channel-box">
             <div slot="header" class="clearfix channel_header">
-              <span>工程机</span>
+              <span>线下普通渠道</span>
+              <el-button style="float: right; padding: 3px 0" type="text"
+                >编辑</el-button
+              >
+            </div>
+
+            <div v-for="o in 6" :key="o" class="text item">
+              {{ "列表内容 " + o }}
+            </div>
+          </el-card>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <el-card class="box-card channel-box">
+            <div slot="header" class="clearfix channel_header">
+              <span>线下普通渠道</span>
               <el-button style="float: right; padding: 3px 0" type="text"
                 >编辑</el-button
               >
@@ -84,21 +81,6 @@
         </div>
       </el-col>
     </el-row>
-    <!-- dialog -->
-    <el-dialog title="渠道管理" :visible.sync="dialogTableVisible">
-      <el-form :model="form">
-        <el-form-item label="一级渠道名称" :label-width="formLabelWidth">
-          <el-input v-model="form.name" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <el-table :data="tableData" style="width: 50%">
-        <el-table-column prop="name" label="名称">
-        </el-table-column>
-        <el-table-column prop="address" label="操作">
-          <span>删除</span>
-        </el-table-column>
-      </el-table>
-    </el-dialog>
   </div>
 </template>
 
@@ -106,7 +88,7 @@
 export default {
   data() {
     return {
-      dialogTableVisible: false,
+      dialogVisible: false,
       formInline: {
         user: "",
         region: "",
@@ -114,9 +96,6 @@ export default {
       newBrand: {
         name: "",
         desc: "",
-      },
-      form: {
-        name: "",
       },
       tableData: [
         {
@@ -198,7 +177,6 @@ export default {
   height: 300px;
   padding: 24px;
   box-sizing: border-box;
-  margin-bottom: 16px;
 }
 .box-title {
   text-align: left;

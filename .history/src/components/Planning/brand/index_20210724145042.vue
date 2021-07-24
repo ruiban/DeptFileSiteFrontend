@@ -5,10 +5,12 @@
         <span>品牌列表</span>
       </div>
       <div class="box-detail">
-        <span> 品牌列表，可以对现有品牌进行管理、编辑 </span>
+        <span>
+          品牌列表，可以对现有品牌进行管理、编辑
+        </span>
       </div>
     </el-card>
-    <el-table :data="tableData" border class="listTable" stripe height="600px">
+    <el-table :data="tableData" border class="listTable" stripe>
       <el-table-column prop="date" label="品牌名称">
         <template slot-scope="scope">
           <el-input
@@ -24,11 +26,7 @@
       </el-table-column>
       <el-table-column prop="name" label="描述"> </el-table-column>
       <el-table-column prop="address" label="创建日期"> </el-table-column>
-      <el-table-column >
-        <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-          <el-button size="small">搜索</el-button>
-        </template>
+      <el-table-column prop="edit" label="操作">
         <template slot-scope="scope">
           <el-button
             type="primary"

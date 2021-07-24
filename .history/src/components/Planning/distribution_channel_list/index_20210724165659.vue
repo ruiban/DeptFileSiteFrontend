@@ -91,8 +91,8 @@
           <el-input v-model="form.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <el-table :data="tableData" style="width: 50%">
-        <el-table-column prop="name" label="名称">
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="name" label="姓名" width="180">
         </el-table-column>
         <el-table-column prop="address" label="操作">
           <span>删除</span>

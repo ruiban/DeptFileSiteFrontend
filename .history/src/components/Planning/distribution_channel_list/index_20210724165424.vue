@@ -91,11 +91,64 @@
           <el-input v-model="form.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <el-table :data="tableData" style="width: 50%">
-        <el-table-column prop="name" label="名称">
+      <el-table
+        :data="tableData"
+        border
+        class="listTable"
+        stripe
+        height="600px"
+      >
+        <el-table-column prop="date" label="品牌名称">
+          <template slot-scope="scope">
+            <el-input
+              placeholder="请输入内容"
+              v-show="scope.row.edit"
+              v-model="scope.row.tab1"
+            >
+            </el-input>
+            <div>
+              <span v-show="!scope.row.edit">{{ scope.row.tab1 }}</span>
+            </div>
+          </template>
         </el-table-column>
-        <el-table-column prop="address" label="操作">
-          <span>删除</span>
+        <el-table-column prop="name" label="描述"> </el-table-column>
+        <el-table-column prop="address" label="创建日期"> </el-table-column>
+        <el-table-column>
+          <template slot="header" slot-scope="scope">
+            <el-input
+              v-model="search"
+              size="mini"
+              placeholder="输入关键字搜索"
+            />
+            <el-button size="small">搜索</el-button>
+          </template>
+          <template slot-scope="scope">
+            <el-button
+              type="primary"
+              size="small"
+              v-show="!scope.row.edit"
+              @click="scope.row.edit = true"
+            >
+              编辑
+            </el-button>
+            <el-button
+              type="primary"
+              size="small"
+              v-show="scope.row.edit"
+              @click="scope.row.edit = false"
+              >保存</el-button
+            >
+            <el-button
+              type="danger"
+              size="small"
+              v-show="scope.row.edit"
+              @click="scope.row.edit = false"
+              >取消</el-button
+            >
+            <el-button type="danger" size="small" v-show="!scope.row.edit"
+              >删除</el-button
+            >
+          </template>
         </el-table-column>
       </el-table>
     </el-dialog>
