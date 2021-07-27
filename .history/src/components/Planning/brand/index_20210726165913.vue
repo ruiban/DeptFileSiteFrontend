@@ -7,12 +7,12 @@
       <div class="box-detail">
         <span> 品牌列表，可以对现有品牌进行管理、编辑 </span>
       </div>
-      <el-form :model="formInline" class="search_form">
+      <el-form :model="formInline" class="demo-form-inline">
         <el-row :gutter="20">
           <el-col :span="6">
             <div class="grid-content bg-purple">
-              <el-form-item label="名称">
-                <el-input v-model="formInline.user" placeholder="品牌名称">
+              <el-form-item label="审批人">
+                <el-input v-model="formInline.user" placeholder="审批人">
                 </el-input>
               </el-form-item>
             </div>
@@ -37,32 +37,23 @@
             <div class="grid-content bg-purple">
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">查询</el-button>
-                <el-button type="primary" @click="handleCreate">新建</el-button>
               </el-form-item>
             </div>
           </el-col>
         </el-row>
       </el-form>
     </el-card>
-    <el-dialog
-      title="添加品牌"
-      :visible.sync="createDialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
-        >
-      </span>
-    </el-dialog>
     <el-table :data="tableData" border class="listTable" stripe height="600px">
       <el-table-column prop="date" label="品牌名称">
         <template slot-scope="scope">
+          <el-input
+            placeholder="请输入内容"
+            v-show="scope.row.edit"
+            v-model="scope.row.tab1"
+          >
+          </el-input>
           <div>
-            <span>{{ scope.row.tab1 }}</span>
+            <span v-show="!scope.row.edit">{{ scope.row.tab1 }}</span>
           </div>
         </template>
       </el-table-column>
@@ -71,10 +62,31 @@
       <el-table-column>
         <template slot="header"> 操作 </template>
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="scope.row.edit = true">
+          <el-button
+            type="primary"
+            size="small"
+            v-show="!scope.row.edit"
+            @click="scope.row.edit = true"
+          >
             编辑
           </el-button>
-          <el-button type="danger" size="small">删除</el-button>
+          <el-button
+            type="primary"
+            size="small"
+            v-show="scope.row.edit"
+            @click="scope.row.edit = false"
+            >保存</el-button
+          >
+          <el-button
+            type="danger"
+            size="small"
+            v-show="scope.row.edit"
+            @click="scope.row.edit = false"
+            >取消</el-button
+          >
+          <el-button type="danger" size="small" v-show="!scope.row.edit"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -88,7 +100,6 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      createDialogVisible: false,
       formInline: {
         user: "",
         region: "",
@@ -114,9 +125,6 @@ export default {
         })
         .catch((_) => {});
     },
-    handleCreate() {
-      this.createDialogVisible = true;
-    },
   },
 };
 </script>
@@ -126,9 +134,6 @@ export default {
   padding: 24px;
   margin: 0 auto;
 }
-.search_form {
-  margin: 20px 0;
-}
 .el-input {
   max-width: 75%;
 }
@@ -136,8 +141,6 @@ export default {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  padding: 24px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .header-box {
   margin-bottom: 16px;

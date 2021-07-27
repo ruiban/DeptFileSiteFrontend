@@ -26,7 +26,7 @@ const router = new Router({
             name: '产品策划',
             iconCls: 'el-icon-s-marketing',
             component: Home,
-            redirect: '/planning_list',
+            redirect: '/home/planning_list',
             meta: {
                 requireAuth: true,
                 breadcrumb: '产品策划'

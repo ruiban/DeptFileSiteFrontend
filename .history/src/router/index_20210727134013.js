@@ -22,11 +22,10 @@ const router = new Router({
             component: Login
         },
         {
-            path: '/home',
+            path: '/planning_list',
             name: '产品策划',
             iconCls: 'el-icon-s-marketing',
-            component: Home,
-            redirect: '/planning_list',
+            component: PlanningList,
             meta: {
                 requireAuth: true,
                 breadcrumb: '产品策划'

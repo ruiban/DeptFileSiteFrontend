@@ -7,7 +7,7 @@
       <div class="box-detail">
         <span> 品牌列表，可以对现有品牌进行管理、编辑 </span>
       </div>
-      <el-form :model="formInline" class="search_form">
+      <el-form :model="formInline" class="demo-form-inline">
         <el-row :gutter="20">
           <el-col :span="6">
             <div class="grid-content bg-purple">
@@ -126,9 +126,6 @@ export default {
   padding: 24px;
   margin: 0 auto;
 }
-.search_form {
-  margin: 20px 0;
-}
 .el-input {
   max-width: 75%;
 }
@@ -136,8 +133,6 @@ export default {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  padding: 24px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .header-box {
   margin-bottom: 16px;

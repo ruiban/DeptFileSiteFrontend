@@ -15,7 +15,6 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        
         <template v-for="(item, index) in activeRoutes">
           <el-submenu
             :index="index + ''"
@@ -45,20 +44,24 @@
             </el-menu-item>
           </template>
         </template>
-        <div class="collapse-btn" @click="collapseChage">
-          <i class="el-icon-s-fold"></i>
-        </div>
       </el-menu>
+      <div class="collapse-btn" @click="collapseChage">
+        <i class="el-icon-menu"></i>
+      </div>
     </el-aside>
     <el-container class="sub_container">
       <el-header>
-        <div class="home_title"></div>
+        <div class="home_title">
+          <!-- 折叠按钮 -->
+
+          <span>部门文档管理系统</span>
+        </div>
         <i class="iconfont icon-gelilogo"></i>
         <div class="home_userinfoContainer">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link home_userinfo">
-              {{ currentUser.username }}
-              <i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
+              {{ currentUser.username
+              }}<i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="updatePassword">
@@ -82,6 +85,7 @@
           </el-dialog>
         </div>
       </el-header>
+      <!-- 侧边栏结束 -->
       <!-- 主要内容 -->
       <el-container class="main-container">
         <el-main>
@@ -129,11 +133,11 @@ export default {
     window.bus.$on("changeIsReload", function () {
       _this.isReload = false;
     });
-    // this.debouncePageScrollHandler = debounce(this.pageScrollHandler, 10);
-    // window.addEventListener("scroll", this.debouncePageScrollHandler);
+    this.debouncePageScrollHandler = debounce(this.pageScrollHandler, 10);
+    window.addEventListener("scroll", this.debouncePageScrollHandler);
   },
   beforeDestroy() {
-    // window.removeEventListener("scroll", this.pageScrollHandler);
+    window.removeEventListener("scroll", this.pageScrollHandler);
   },
   data() {
     return {
@@ -293,8 +297,15 @@ export default {
 <style>
 .el-header {
   background-color: #3399cc;
+  background: #36d1dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(54, 209, 220),
+    rgb(91, 134, 229)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229));
   color: #fff;
-  text-align: left;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -304,14 +315,10 @@ export default {
   display: none;
 }
 .collapse-btn {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
+  float: left;
   padding: 0 0px;
   cursor: pointer;
   line-height: 70px;
-  width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;
@@ -325,25 +332,21 @@ export default {
   text-align: center;
 }
 .menu_wrapper {
-  background-color: wheat;
+  background-color: white;
   transition: width 0.5s;
-  width: 200px !important;
-  /* height: 1400px; */
+  height: 1400px;
 }
 .menu_wrapper_collapse {
   width: 64px !important;
 }
 .aside-menu {
-  height: 100%;
+  height: 1200px;
   /* width: 200px; */
-  position: fixed;
-  top: 0px;
   /* display: none; */
 }
-.aside_header {
-  padding: 16px;
-  font-size: 18px;
-  color: white;
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 150px;
+  /* min-height: 400px; */
 }
 .fix {
   position: fixed;

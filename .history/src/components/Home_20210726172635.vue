@@ -1,87 +1,90 @@
 <template>
   <el-container class="home_container">
-    <!-- 侧边栏 -->
-    <el-aside
-      class="menu_wrapper"
-      v-bind:class="{ menu_wrapper_collapse: collapse }"
-    >
-      <el-menu
-        default-active="1"
-        :collapse="collapse"
-        class="el-menu-vertical-demo aside-menu"
-        v-bind:class="{ fix: fix }"
-        @select="handleSelect"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-      >
-        
-        <template v-for="(item, index) in activeRoutes">
-          <el-submenu
-            :index="index + ''"
-            :key="index"
-            v-if="item.children.length > 1"
-          >
-            <template slot="title">
-              <i :class="item.iconCls"></i>
-              <span>{{ item.name }}</span>
-            </template>
-            <el-menu-item
-              v-for="child in item.children"
-              :index="child.path"
-              :key="child.path"
-            >
-              <i :class="child.iconCls"></i>
-              <span>{{ child.name }}</span>
-            </el-menu-item>
-          </el-submenu>
-          <template v-else>
-            <el-menu-item
-              :index="item.children[0].path"
-              :key="item.children.index"
-            >
-              <i :class="item.children[0].iconCls"></i>
-              <span slot="title">{{ item.children[0].name }}</span>
-            </el-menu-item>
-          </template>
-        </template>
+    <el-header>
+      <div class="home_title">
+        <!-- 折叠按钮 -->
         <div class="collapse-btn" @click="collapseChage">
-          <i class="el-icon-s-fold"></i>
+          <i class="el-icon-menu"></i>
         </div>
-      </el-menu>
-    </el-aside>
+        <span>部门文档管理系统</span>
+      </div>
+      <i class="iconfont icon-gelilogo"></i>
+      <div class="home_userinfoContainer">
+        <el-dropdown @command="handleCommand">
+          <span class="el-dropdown-link home_userinfo">
+            {{ currentUser.username
+            }}<i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="updatePassword">
+              修改密码
+            </el-dropdown-item>
+            <el-dropdown-item command="logout"> 退出登录 </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-dialog title="修改密码" :visible.sync="dialogVisible" center>
+          <el-input
+            type="password"
+            v-model="newPassword"
+            placeholder="请输入新密码"
+            show-password
+            required
+          />
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="updatePassword">提交</el-button>
+          </div>
+        </el-dialog>
+      </div>
+    </el-header>
     <el-container class="sub_container">
-      <el-header>
-        <div class="home_title"></div>
-        <i class="iconfont icon-gelilogo"></i>
-        <div class="home_userinfoContainer">
-          <el-dropdown @command="handleCommand">
-            <span class="el-dropdown-link home_userinfo">
-              {{ currentUser.username }}
-              <i class="el-icon-arrow-down el-icon--right home_userinfo"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="updatePassword">
-                修改密码
-              </el-dropdown-item>
-              <el-dropdown-item command="logout"> 退出登录 </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-          <el-dialog title="修改密码" :visible.sync="dialogVisible" center>
-            <el-input
-              type="password"
-              v-model="newPassword"
-              placeholder="请输入新密码"
-              show-password
-              required
-            />
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false">取消</el-button>
-              <el-button type="primary" @click="updatePassword">提交</el-button>
-            </div>
-          </el-dialog>
-        </div>
-      </el-header>
+      <!-- 侧边栏 -->
+      <el-aside
+        class="menu_wrapper"
+        v-bind:class="{ menu_wrapper_collapse: collapse }"
+      >
+        <el-menu
+          default-active="1"
+          :collapse="collapse"
+          class="el-menu-vertical-demo aside-menu"
+          v-bind:class="{ fix: fix }"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
+          <template v-for="(item, index) in activeRoutes">
+            <el-submenu
+              :index="index + ''"
+              :key="index"
+              v-if="item.children.length > 1"
+            >
+              <template slot="title">
+                <i :class="item.iconCls"></i>
+                <span>{{ item.name }}</span>
+              </template>
+              <el-menu-item
+                v-for="child in item.children"
+                :index="child.path"
+                :key="child.path"
+              >
+                <i :class="child.iconCls"></i>
+                <span>{{ child.name }}</span>
+              </el-menu-item>
+            </el-submenu>
+            <template v-else>
+              <el-menu-item
+                :index="item.children[0].path"
+                :key="item.children.index"
+              >
+                <i :class="item.children[0].iconCls"></i>
+                <span slot="title">{{ item.children[0].name }}</span>
+              </el-menu-item>
+            </template>
+          </template>
+        </el-menu>
+      </el-aside>
+      <!-- 侧边栏结束 -->
       <!-- 主要内容 -->
       <el-container class="main-container">
         <el-main>
@@ -129,11 +132,11 @@ export default {
     window.bus.$on("changeIsReload", function () {
       _this.isReload = false;
     });
-    // this.debouncePageScrollHandler = debounce(this.pageScrollHandler, 10);
-    // window.addEventListener("scroll", this.debouncePageScrollHandler);
+    this.debouncePageScrollHandler = debounce(this.pageScrollHandler, 10)
+    window.addEventListener("scroll", this.debouncePageScrollHandler);
   },
   beforeDestroy() {
-    // window.removeEventListener("scroll", this.pageScrollHandler);
+    window.removeEventListener("scroll", this.pageScrollHandler);
   },
   data() {
     return {
@@ -292,26 +295,21 @@ export default {
 </script>
 <style>
 .el-header {
-  background-color: #3399cc;
+  background-color: #0099CC;
   color: #fff;
-  text-align: left;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .hide {
   display: none;
 }
 .collapse-btn {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
+  float: left;
   padding: 0 0px;
   cursor: pointer;
   line-height: 70px;
-  width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;
@@ -325,25 +323,21 @@ export default {
   text-align: center;
 }
 .menu_wrapper {
-  background-color: wheat;
+  background-color: white;
   transition: width 0.5s;
-  width: 200px !important;
-  /* height: 1400px; */
+  height: 1400px;
 }
 .menu_wrapper_collapse {
   width: 64px !important;
 }
 .aside-menu {
-  height: 100%;
+  height: 1200px;
   /* width: 200px; */
-  position: fixed;
-  top: 0px;
   /* display: none; */
 }
-.aside_header {
-  padding: 16px;
-  font-size: 18px;
-  color: white;
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 150px;
+  /* min-height: 400px; */
 }
 .fix {
   position: fixed;

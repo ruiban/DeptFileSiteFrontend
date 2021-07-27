@@ -311,7 +311,6 @@ export default {
   cursor: pointer;
   line-height: 70px;
   width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;

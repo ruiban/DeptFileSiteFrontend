@@ -46,7 +46,7 @@
           </template>
         </template>
         <div class="collapse-btn" @click="collapseChage">
-          <i class="el-icon-s-fold"></i>
+          <i class="el-icon-menu"></i>
         </div>
       </el-menu>
     </el-aside>
@@ -311,7 +311,6 @@ export default {
   cursor: pointer;
   line-height: 70px;
   width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;

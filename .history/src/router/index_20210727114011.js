@@ -23,10 +23,26 @@ const router = new Router({
         },
         {
             path: '/home',
+            name: '个人中心',
+            component: Home,
+            meta: {
+                requireAuth: true,
+                breadcrumb: '个人中心'
+            },
+            children: [
+                {
+                    path: '/workbeach',
+                    iconCls: 'el-icon-house',
+                    name: '个人中心',
+                    component: (resolve) => require(['../components/WorkBeach/index.vue'], resolve)
+                }
+            ],
+        },
+        {
+            path: '//planning_list',
             name: '产品策划',
             iconCls: 'el-icon-s-marketing',
             component: Home,
-            redirect: '/planning_list',
             meta: {
                 requireAuth: true,
                 breadcrumb: '产品策划'
@@ -35,7 +51,7 @@ const router = new Router({
                 {
                     path: '/planning_list',
                     name: '策划列表',
-
+                    
                     component: PlanningList,
                     meta: {
                         requireAuth: true,
@@ -94,23 +110,6 @@ const router = new Router({
                 }
 
             ]
-        },
-        {
-            path: '/workbeach',
-            name: '个人中心',
-            component: Home,
-            meta: {
-                requireAuth: true,
-                breadcrumb: '个人中心'
-            },
-            children: [
-                {
-                    path: '/workbeach',
-                    iconCls: 'el-icon-house',
-                    name: '个人中心',
-                    component: (resolve) => require(['../components/WorkBeach/index.vue'], resolve)
-                }
-            ],
         },
         {
             path: '/home',

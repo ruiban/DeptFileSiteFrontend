@@ -136,8 +136,7 @@ export default {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  padding: 24px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1)
 }
 .header-box {
   margin-bottom: 16px;

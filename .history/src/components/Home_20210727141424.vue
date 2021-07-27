@@ -46,7 +46,7 @@
           </template>
         </template>
         <div class="collapse-btn" @click="collapseChage">
-          <i class="el-icon-s-fold"></i>
+          <i class="el-icon-menu"></i>
         </div>
       </el-menu>
     </el-aside>
@@ -305,13 +305,9 @@ export default {
 }
 .collapse-btn {
   text-align: center;
-  position: absolute;
-  bottom: 0;
   padding: 0 0px;
   cursor: pointer;
   line-height: 70px;
-  width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;

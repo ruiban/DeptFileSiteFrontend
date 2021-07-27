@@ -15,7 +15,9 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        
+        <div class="aside_header">
+          <span>产品管理系统</span>
+        </div>
         <template v-for="(item, index) in activeRoutes">
           <el-submenu
             :index="index + ''"
@@ -45,10 +47,10 @@
             </el-menu-item>
           </template>
         </template>
-        <div class="collapse-btn" @click="collapseChage">
-          <i class="el-icon-s-fold"></i>
-        </div>
       </el-menu>
+      <div class="collapse-btn" @click="collapseChage">
+        <i class="el-icon-menu"></i>
+      </div>
     </el-aside>
     <el-container class="sub_container">
       <el-header>
@@ -304,14 +306,10 @@ export default {
   display: none;
 }
 .collapse-btn {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
+  float: left;
   padding: 0 0px;
   cursor: pointer;
   line-height: 70px;
-  width: 100%;
-  color: white;
 }
 .home_container {
   position: relative;
@@ -335,15 +333,14 @@ export default {
 }
 .aside-menu {
   height: 100%;
-  /* width: 200px; */
+  width: 200px;
   position: fixed;
   top: 0px;
   /* display: none; */
 }
-.aside_header {
-  padding: 16px;
-  font-size: 18px;
-  color: white;
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 150px;
+  /* min-height: 400px; */
 }
 .fix {
   position: fixed;
