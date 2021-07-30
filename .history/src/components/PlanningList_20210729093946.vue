@@ -321,7 +321,7 @@ export default {
   methods: {
     postPlanningList(data) {
       console.log('data', data);
-      postRequest("/plan/all", data).then((res) => {
+      postRequest("/planning/all", data).then((res) => {
         var _this = this;
         console.log(res.data.data.records);
         var records = res.data.data.records;

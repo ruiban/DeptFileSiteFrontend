@@ -103,7 +103,7 @@
                 <el-form-item label="销售渠道" class="distribution_channel">
                   <el-cascader
                     style="width: 100%"
-                    v-model="formData.distribution_channel"
+                    v-model="formData.distributionChannel"
                     :options="formData.channel_options"
                     :props="{ expandTrigger: 'hover' }"
                   >
@@ -114,7 +114,7 @@
             <el-row :gutter="20">
               <el-col :lg="12" :md="24" :xs="24">
                 <el-form-item class="change__point" label="较基础机型变更点">
-                  <el-input  v-model="formData.changePoint" type="textarea" :rows="2" placeholder="请输入内容">
+                  <el-input type="textarea" :rows="2" placeholder="请输入内容">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -315,5 +315,6 @@ export default {
   float: left;
   font-size: 16px;
 }
-
+.box-card {
+}
 </style>

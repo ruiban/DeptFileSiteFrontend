@@ -95,13 +95,13 @@ export default {
   },
   methods: {
     increase(){
-      this.percentage += 100;
+      this.percentage += 10;
       if (this.percentage > 100) {
         this.percentage = 100;
       }
     },
     decrease() {
-      this.percentage -= 100;
+      this.percentage -= 10;
       if(this.percentage<0) {
         this.percentage = 0;
       }
@@ -212,11 +212,6 @@ export default {
               _this.$message({ type: "success", message: "创建成功" });
               let planningId = resp.data.data;
               console.log("id:", planningId);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if(resp.data.data.pictureList[i].status = true) {
-                  this.percentage = 100;
-                }
-              }
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {

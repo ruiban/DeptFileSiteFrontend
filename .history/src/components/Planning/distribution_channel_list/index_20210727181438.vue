@@ -138,16 +138,7 @@ export default {
         name: "",
         desc: "",
       },
-      fileList: [
-        {
-          name: "food.jpeg",
-          url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
-        },
-        {
-          name: "food2.jpeg",
-          url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
-        },
-      ],
+      fileList: {},
       form: {
         name: "",
       },
@@ -180,7 +171,22 @@ export default {
       console.log("submit!");
     },
     submitUpload() {
-      uploadFileRequest("/planning/insert", this.fileList).then((resp) => {});
+      uploadFileRequest("/planning/insert", this.fileList).then((resp) => {
+        if (resp.status == 200) {
+          if (resp.data.code == 1000) {
+            _this.$message({ type: "success", message: "创建成功" });
+            let planningId = resp.data.data;
+            console.log("id:", planningId);
+            let path = "/planning_list";
+            this.$router.push(path);
+          } else {
+            _this.$message({ type: "error", message: resp.data.data });
+          }
+        } else {
+          _this.$message({ type: "error", message: resp.data.data });
+        }
+        console.log("end");
+      });
     },
     handleClose(done) {
       this.$confirm("确认关闭？")

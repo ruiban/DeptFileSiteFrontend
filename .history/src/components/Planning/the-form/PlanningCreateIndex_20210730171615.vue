@@ -94,18 +94,6 @@ export default {
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
-    increase(){
-      this.percentage += 100;
-      if (this.percentage > 100) {
-        this.percentage = 100;
-      }
-    },
-    decrease() {
-      this.percentage -= 100;
-      if(this.percentage<0) {
-        this.percentage = 0;
-      }
-    },
     //获取策划详细数据
     postPlanning() {
       postRequest("/plan/plan_detail", this.params).then((res) => {
@@ -212,11 +200,6 @@ export default {
               _this.$message({ type: "success", message: "创建成功" });
               let planningId = resp.data.data;
               console.log("id:", planningId);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if(resp.data.data.pictureList[i].status = true) {
-                  this.percentage = 100;
-                }
-              }
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {

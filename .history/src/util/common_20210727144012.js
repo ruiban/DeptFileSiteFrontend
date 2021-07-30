@@ -61,7 +61,7 @@ export const loadCurrentUser = (_this) => {
         //sessionStorage.setItem('permissions',permissions);
         window.document.cookie = "permissions"+"="+permissions;
         //sessionStorage.setItem('permissions_user',permissions_user);
-        _this.$router.replace({path: '/planning_create'});
+        _this.$router.replace({path: '/planning_list'});
       }else{
         _this.$alert('登陆失败，获取不到该用户的信息!', '失败!');
       }

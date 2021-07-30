@@ -1,16 +1,5 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
-    <el-progress
-      type="dashboard"
-      :percentage="percentage"
-      :color="colors"
-    ></el-progress>
-    <div>
-      <el-button-group>
-        <el-button icon="el-icon-minus" @click="decrease"></el-button>
-        <el-button icon="el-icon-plus" @click="increase"></el-button>
-      </el-button-group>
-    </div>
     <div class="anchor-wrapper">
       <anchor v-if="pageBlock" :page-block="pageBlock" />
     </div>
@@ -54,10 +43,6 @@ export default {
   //data数据
   data() {
     return {
-      percentage: 10,
-      colors: [
-        {color: '#6f7ad3', percentage: 100}
-      ],
       imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),
@@ -94,18 +79,6 @@ export default {
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
-    increase(){
-      this.percentage += 100;
-      if (this.percentage > 100) {
-        this.percentage = 100;
-      }
-    },
-    decrease() {
-      this.percentage -= 100;
-      if(this.percentage<0) {
-        this.percentage = 0;
-      }
-    },
     //获取策划详细数据
     postPlanning() {
       postRequest("/plan/plan_detail", this.params).then((res) => {
@@ -212,18 +185,13 @@ export default {
               _this.$message({ type: "success", message: "创建成功" });
               let planningId = resp.data.data;
               console.log("id:", planningId);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if(resp.data.data.pictureList[i].status = true) {
-                  this.percentage = 100;
-                }
-              }
-              // let path = "/planning_list";
-              // this.$router.push(path);
+              let path = "/planning_list";
+              this.$router.push(path);
             } else {
-              _this.$message({ type: "error", message: resp.data.msg });
+              _this.$message({ type: "error", message: resp.data.mes });
             }
           } else {
-            _this.$message({ type: "error", message: resp.data.msg });
+            _this.$message({ type: "error", message: resp.data.mes});
           }
           console.log("end");
         });

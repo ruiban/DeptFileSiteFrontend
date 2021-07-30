@@ -56,7 +56,7 @@
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="产品规格">
-                  <el-input v-model="formData.specification"> </el-input>
+                  <el-input v-model="formData.name"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
@@ -79,24 +79,24 @@
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="外观颜色">
-                  <el-input v-model="formData.color"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="外观材质">
-                  <el-input v-model="formData.material"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row :gutter="20">
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="功能">
-                  <el-input v-model="formData.function"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="基础机型">
-                  <el-input v-model="formData.base"> </el-input>
+                  <el-input v-model="formData.name"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="12" :md="8" :xs="24">
@@ -114,7 +114,7 @@
             <el-row :gutter="20">
               <el-col :lg="12" :md="24" :xs="24">
                 <el-form-item class="change__point" label="较基础机型变更点">
-                  <el-input  v-model="formData.changePoint" type="textarea" :rows="2" placeholder="请输入内容">
+                  <el-input type="textarea" :rows="2" placeholder="请输入内容">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -239,7 +239,7 @@ export default {
         },
         {
           value: "2",
-          label: "挂机",
+          label: "挂机"
         },
       ],
       rules: {
@@ -270,9 +270,6 @@ export default {
 }
 .planningCreateBaseInfo /deep/ .is-disabled .el-input__inner:hover {
   border: solid 2px black;
-}
-.planningCreateBaseInfo /deep/ .el-select {
-  width: 100%;
 }
 .planningCreateBaseInfo /deep/ .el-textarea.is-disabled .el-textarea__inner {
   cursor: text;
@@ -315,5 +312,6 @@ export default {
   float: left;
   font-size: 16px;
 }
-
+.box-card {
+}
 </style>

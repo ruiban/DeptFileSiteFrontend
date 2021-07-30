@@ -315,5 +315,6 @@ export default {
   float: left;
   font-size: 16px;
 }
-
+.box-card {
+}
 </style>

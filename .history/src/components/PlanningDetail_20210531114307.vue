@@ -331,7 +331,7 @@ export default {
   },
   methods: {
     postPlanning() {
-      postRequest("/plan/plan_detail", 3).then((res) => {
+      postRequest("/planning/planning_detail", this.params).then((res) => {
         let records = res.data.data;
         // this.planning_detail = records;
       });

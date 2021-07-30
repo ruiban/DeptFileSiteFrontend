@@ -103,8 +103,8 @@
                 <el-form-item label="销售渠道" class="distribution_channel">
                   <el-cascader
                     style="width: 100%"
-                    v-model="formData.distribution_channel"
-                    :options="formData.channel_options"
+                    v-model="formData.distributionChannel"
+                    :options="formData.channelOptions"
                     :props="{ expandTrigger: 'hover' }"
                   >
                   </el-cascader>
@@ -315,5 +315,6 @@ export default {
   float: left;
   font-size: 16px;
 }
-
+.box-card {
+}
 </style>

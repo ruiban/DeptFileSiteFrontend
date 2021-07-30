@@ -1,16 +1,5 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
-    <el-progress
-      type="dashboard"
-      :percentage="percentage"
-      :color="colors"
-    ></el-progress>
-    <div>
-      <el-button-group>
-        <el-button icon="el-icon-minus" @click="decrease"></el-button>
-        <el-button icon="el-icon-plus" @click="increase"></el-button>
-      </el-button-group>
-    </div>
     <div class="anchor-wrapper">
       <anchor v-if="pageBlock" :page-block="pageBlock" />
     </div>
@@ -54,10 +43,6 @@ export default {
   //data数据
   data() {
     return {
-      percentage: 10,
-      colors: [
-        {color: '#6f7ad3', percentage: 100}
-      ],
       imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),
@@ -94,21 +79,9 @@ export default {
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
-    increase(){
-      this.percentage += 100;
-      if (this.percentage > 100) {
-        this.percentage = 100;
-      }
-    },
-    decrease() {
-      this.percentage -= 100;
-      if(this.percentage<0) {
-        this.percentage = 0;
-      }
-    },
     //获取策划详细数据
     postPlanning() {
-      postRequest("/plan/plan_detail", this.params).then((res) => {
+      postRequest("/planning/planning_detail", this.params).then((res) => {
         let records = res.data.data;
         var _this = this;
         let formDataMap = this.resolveDataToMap(records);
@@ -146,9 +119,9 @@ export default {
     // 数据转换
     resolveDataToMap(data) {
       let base = process.env.API_HOST;
-      for (let i = 0; i < data.pictureList.length; i++) {
-        console.log(base + data.pictureList[i].path);
-        data.pictureList[i].url = base + data.pictureList[i].path;
+      for (let i = 0; i < data.imageList.length; i++) {
+        console.log(base + data.imageList[i].path);
+        data.imageList[i].url = base + data.imageList[i].path;
       }
       const form1 = {
         name: data.name,
@@ -159,7 +132,7 @@ export default {
         ],
       };
       const form2 = {
-        imageList: data.pictureList,
+        imageList: data.imageList,
       };
       const form3 = {};
       return { form1, form2, form3 };
@@ -206,24 +179,19 @@ export default {
         }
         console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
-        uploadFileRequest("/plan/insert", formData).then((resp) => {
+        uploadFileRequest("/plan/image_test", formData).then((resp) => {
           if (resp.status == 200) {
             if (resp.data.code == 1000) {
               _this.$message({ type: "success", message: "创建成功" });
               let planningId = resp.data.data;
               console.log("id:", planningId);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if(resp.data.data.pictureList[i].status = true) {
-                  this.percentage = 100;
-                }
-              }
-              // let path = "/planning_list";
-              // this.$router.push(path);
+              let path = "/planning_list";
+              this.$router.push(path);
             } else {
-              _this.$message({ type: "error", message: resp.data.msg });
+              _this.$message({ type: "error", message: resp.data.data });
             }
           } else {
-            _this.$message({ type: "error", message: resp.data.msg });
+            _this.$message({ type: "error", message: resp.data.data });
           }
           console.log("end");
         });

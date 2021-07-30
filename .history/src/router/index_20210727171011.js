@@ -38,15 +38,6 @@ const router = new Router({
                         keepAlive: true,
                         requireAuth: true
                     }
-                },
-                {
-                    path: '/fileUpload',
-                    name: '上传文档',
-                    component: FileUpload,
-                    meta: {
-                        keepAlive: false,
-                        requireAuth: true
-                    }
                 }
             ]
         },

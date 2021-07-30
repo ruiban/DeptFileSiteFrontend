@@ -151,7 +151,7 @@ export default {
         this.imageList = fileList;
       // }
       // if (regex.test(imageName.toLowerCase())) {
-        this.formData.imageList = this.$refs.imageUpload.uploadFiles;
+      //   this.formData.imageList = this.$refs.imageUpload.uploadFiles;
       //   console.log(this.formData);
       // } else {
       //   this.$message.error("请选择图片文件");

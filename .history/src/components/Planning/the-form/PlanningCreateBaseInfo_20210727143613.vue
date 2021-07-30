@@ -91,12 +91,12 @@
             <el-row :gutter="20">
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="功能">
-                  <el-input v-model="formData.function"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="基础机型">
-                  <el-input v-model="formData.base"> </el-input>
+                  <el-input v-model="formData.name"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="12" :md="8" :xs="24">
@@ -114,7 +114,7 @@
             <el-row :gutter="20">
               <el-col :lg="12" :md="24" :xs="24">
                 <el-form-item class="change__point" label="较基础机型变更点">
-                  <el-input  v-model="formData.changePoint" type="textarea" :rows="2" placeholder="请输入内容">
+                  <el-input type="textarea" :rows="2" placeholder="请输入内容">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -315,5 +315,6 @@ export default {
   float: left;
   font-size: 16px;
 }
-
+.box-card {
+}
 </style>
