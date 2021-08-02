@@ -8,7 +8,7 @@
       width="50%"
     >
       <div class="image_progress_group">
-        <h1>图片附件上传</h1>
+        <h1>图片上传</h1>
         <div
           class="image_progress_item"
           v-for="(item) in imageResult"
@@ -25,7 +25,7 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">返回列表</el-button>
-        {{ count }}秒后跳转至详情
+        {{ count }}秒后跳转
         <el-button type="primary" @click="dialogVisible = false">
           立即跳转</el-button
         >
@@ -74,7 +74,7 @@ export default {
   //data数据
   data() {
     return {
-      dialogVisible: true,
+      dialogVisible: false,
       imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),

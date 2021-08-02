@@ -1,33 +1,27 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
     <el-dialog
-      v-if="imageResult.length != 0"
+      v-if="imageResult.length !=0"
       class="create_plan_dialog"
       title="创建产品策划中"
       :visible.sync="dialogVisible"
       width="50%"
     >
       <div class="image_progress_group">
-        <h1>图片附件上传</h1>
         <div
           class="image_progress_item"
-          v-for="(item) in imageResult"
+          v-for="(item, i) in imageResult"
           v-bind:key="item.id"
         >
           <span>{{ item.name }}</span>
-          <el-progress
-            :stroke-width="10"
-            :percentage="item.percentage"
-            :color="colors"
-          >
+          <el-progress :stroke-width="10" :percentage="item.percentage" :color="colors">
           </el-progress>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">返回列表</el-button>
-        {{ count }}秒后跳转至详情
+        <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">
-          立即跳转</el-button
+          确 定</el-button
         >
       </span>
     </el-dialog>
@@ -74,7 +68,7 @@ export default {
   //data数据
   data() {
     return {
-      dialogVisible: true,
+      dialogVisible: false,
       imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),
@@ -187,21 +181,22 @@ export default {
       const form3 = {};
       return { form1, form2, form3 };
     },
-    startDivi() {
+    startDivi(){
       const TIME_COUNT = 5;
-      if (!this.timer) {
+      if(!this.timer){
         this.count = TIME_COUNT;
-        this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.count--;
-          } else {
+        this.show = false;
+        this.timer = setInterval(()=>{
+          if(this.count>0&&this.count<=TIME_COUNT)
+          {this.count--;}else{
+            this.show = true;
             clearInterval(this.timer);
             this.timer = null;
-            this.$router.push({
-              path: "/planning_list",
-            });
+            this.$router.puth({
+              path: "/planning_list"
+            })
           }
-        }, 1000);
+        })
       }
     },
     // 表单上传
@@ -253,11 +248,12 @@ export default {
               for (let i = 0; i < resp.data.data.pictureList.length; i++) {
                 if ((resp.data.data.pictureList[i].status = true)) {
                   _this.imageResult[i].percentage = 100;
-                } else {
+                }
+                else {
                   _this.imageResult[i].percentage = 50;
                 }
               }
-              this.startDivi();
+
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {

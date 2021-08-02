@@ -1,33 +1,27 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
     <el-dialog
-      v-if="imageResult.length != 0"
       class="create_plan_dialog"
       title="创建产品策划中"
       :visible.sync="dialogVisible"
       width="50%"
+      :before-close="handleClose"
     >
       <div class="image_progress_group">
-        <h1>图片附件上传</h1>
-        <div
-          class="image_progress_item"
-          v-for="(item) in imageResult"
-          v-bind:key="item.id"
-        >
-          <span>{{ item.name }}</span>
-          <el-progress
-            :stroke-width="10"
-            :percentage="item.percentage"
-            :color="colors"
-          >
+        <div class="image_progress_item">
+          <span>jslsks</span>
+          <el-progress :stroke-width="10" :type="line" :percentage="percentage" :color="customColor">
+          </el-progress>
+        </div>
+        <div class="image_progress_item">
+          <el-progress :percentage="percentage" :color="customColor">
           </el-progress>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">返回列表</el-button>
-        {{ count }}秒后跳转至详情
+        <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">
-          立即跳转</el-button
+          确 定</el-button
         >
       </span>
     </el-dialog>
@@ -74,27 +68,19 @@ export default {
   //data数据
   data() {
     return {
-      dialogVisible: true,
+      percentage: 10,
+      dialogVisible: false,
+      colors: [{ color: "#6f7ad3", percentage: 100 }],
       imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),
       },
-      colors: [
-        { color: "#f56c6c", percentage: 20 },
-        { color: "#e6a23c", percentage: 40 },
-        { color: "red", percentage: 60 },
-        { color: "#1989fa", percentage: 80 },
-        { color: "green", percentage: 100 },
-      ],
-      count: "",
       pageBlock: null,
       formDataMap: {
         form1: {},
         form2: {},
         form3: {},
       },
-      imageResult: {},
-      fileResult: {},
     };
   },
   provide() {
@@ -187,23 +173,6 @@ export default {
       const form3 = {};
       return { form1, form2, form3 };
     },
-    startDivi() {
-      const TIME_COUNT = 5;
-      if (!this.timer) {
-        this.count = TIME_COUNT;
-        this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.count--;
-          } else {
-            clearInterval(this.timer);
-            this.timer = null;
-            this.$router.push({
-              path: "/planning_list",
-            });
-          }
-        }, 1000);
-      }
-    },
     // 表单上传
     handleSave() {
       var _this = this;
@@ -225,8 +194,6 @@ export default {
           formData.append(key, fullFormData[key]);
         });
         // 校验结束
-        _this.imageResult = fullFormData.imageList;
-        console.log("imageResult", _this.imageResult);
         formData.delete("imageList");
         if (fullFormData.imageList) {
           for (let i = 0; i < fullFormData.imageList.length; i++) {
@@ -241,33 +208,27 @@ export default {
         }
         console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
-        _this.formDataMap = fullFormData;
-        uploadFileRequest("/plan/insert", formData).then((resp) => {
-          if (resp.status == 200) {
-            if (resp.data.code == 1000) {
-              _this.$message({ type: "success", message: "创建成功" });
-              let planningId = resp.data.data;
-              console.log("id:", planningId);
-              // _this.imageResult = resp.data.data.pictureList;
-              console.log("imageResult", _this.imageResult);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if ((resp.data.data.pictureList[i].status = true)) {
-                  _this.imageResult[i].percentage = 100;
-                } else {
-                  _this.imageResult[i].percentage = 50;
-                }
-              }
-              this.startDivi();
-              // let path = "/planning_list";
-              // this.$router.push(path);
-            } else {
-              _this.$message({ type: "error", message: resp.data.msg });
-            }
-          } else {
-            _this.$message({ type: "error", message: resp.data.msg });
-          }
-          console.log("end");
-        });
+        // uploadFileRequest("/plan/insert", formData).then((resp) => {
+        //   if (resp.status == 200) {
+        //     if (resp.data.code == 1000) {
+        //       _this.$message({ type: "success", message: "创建成功" });
+        //       let planningId = resp.data.data;
+        //       console.log("id:", planningId);
+        //       for (let i = 0; i < resp.data.data.pictureList.length; i++) {
+        //         if(resp.data.data.pictureList[i].status = true) {
+        //           this.percentage = 100;
+        //         }
+        //       }
+        //       // let path = "/planning_list";
+        //       // this.$router.push(path);
+        //     } else {
+        //       _this.$message({ type: "error", message: resp.data.msg });
+        //     }
+        //   } else {
+        //     _this.$message({ type: "error", message: resp.data.msg });
+        //   }
+        //   console.log("end");
+        // });
       } else {
         this.$message.warning("校验未通过");
       }

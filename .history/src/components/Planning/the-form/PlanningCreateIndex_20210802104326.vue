@@ -1,20 +1,34 @@
 <template>
   <div ref="pageBlock" class="planningCreateMain">
-    <div data-section="基础信息" data-ismain></div>
-
-    <div data-section="产品信息"></div>
-    <planning-create-base-info ref="form1" :data="formDataMap.form1" />
-
-    <div data-section="产品图片"></div>
-    <planning-create-image ref="form2" :data="formDataMap.form2" />
-
-    <el-button type="primary" @click="handleSave">保存</el-button>
+    <el-dialog
+      class="create_plan_dialog"
+      title="创建产品策划中"
+      :visible.sync="dialogVisible"
+      width="50%"
+      :before-close="handleClose"
+    >
+      <el-progress :percentage="50"></el-progress>
+      <el-progress :percentage="100" :format="format"></el-progress>
+      <el-progress :percentage="100" status="success"></el-progress>
+      <el-progress :percentage="100" status="warning"></el-progress>
+      <el-progress :percentage="50" status="exception"></el-progress>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
     <div class="anchor-wrapper">
-      <!-- <anchor /> -->
+      <anchor v-if="pageBlock" :page-block="pageBlock" />
     </div>
-
-    <div data-section="附件列表"></div>
+    <div data-section="基础信息" data-ismain></div>
+    <planning-create-base-info ref="form1" :data="formDataMap.form1" />
+    <div data-section="产品图片" data-ismain></div>
+    <planning-create-image ref="form2" :data="formDataMap.form2" />
+    <div data-section="文档信息" data-ismain></div>
     <planning-create-file-list ref="form3" :data="formDataMap.form3" />
+    <el-button type="primary" @click="handleSave">创建</el-button>
   </div>
 </template>
 <script>
@@ -48,6 +62,10 @@ export default {
   //data数据
   data() {
     return {
+      percentage: 10,
+      dialogVisible: false,
+      colors: [{ color: "#6f7ad3", percentage: 100 }],
+      imageTest: "",
       params: {
         id: parseInt(this.$route.params.id),
       },
@@ -83,8 +101,9 @@ export default {
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
+    //编辑页面获取策划详细数据
     postPlanning() {
-      postRequest("/planning/planning_detail", this.params).then((res) => {
+      postRequest("/plan/plan_detail", this.params).then((res) => {
         let records = res.data.data;
         var _this = this;
         let formDataMap = this.resolveDataToMap(records);
@@ -94,9 +113,7 @@ export default {
       });
       console.log("this.formDataMap:", this.formDataMap);
     },
-    getImage() {
-      getRequest("/viewImage")
-    }
+    // 获取销售渠道列表
     getDistributionChannelList() {
       var channel_options = [];
       getRequest("/distribution_channel/withChildren").then((res) => {
@@ -121,7 +138,13 @@ export default {
       });
       return channel_options;
     },
+    // 数据转换
     resolveDataToMap(data) {
+      let base = process.env.API_HOST;
+      for (let i = 0; i < data.pictureList.length; i++) {
+        console.log(base + data.pictureList[i].path);
+        data.pictureList[i].url = base + data.pictureList[i].path;
+      }
       const form1 = {
         name: data.name,
         brand: data.brand,
@@ -131,7 +154,7 @@ export default {
         ],
       };
       const form2 = {
-        imageList: data.images,
+        imageList: data.pictureList,
       };
       const form3 = {};
       return { form1, form2, form3 };
@@ -144,8 +167,10 @@ export default {
       const form3 = {};
       return { form1, form2, form3 };
     },
+    // 表单上传
     handleSave() {
       var _this = this;
+      _this.dialogVisible = true;
       const formKeys = Object.keys(_this.formDataMap);
       console.log("formKeys", _this.formDataMap);
       const validResults = formKeys.map((formKey) =>
@@ -177,22 +202,27 @@ export default {
         }
         console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
-        uploadFileRequest("/planning/insert", formData).then((resp) => {
-          if (resp.status == 200) {
-            if (resp.data.code == 1000) {
-              _this.$message({ type: "success", message: "创建成功" });
-              let planningId = resp.data.data;
-              console.log("id:", planningId);
-              let path = "/planning_list";
-              this.$router.push(path);
-            } else {
-              _this.$message({ type: "error", message: resp.data.data });
-            }
-          } else {
-            _this.$message({ type: "error", message: resp.data.data });
-          }
-          console.log("end");
-        });
+        // uploadFileRequest("/plan/insert", formData).then((resp) => {
+        //   if (resp.status == 200) {
+        //     if (resp.data.code == 1000) {
+        //       _this.$message({ type: "success", message: "创建成功" });
+        //       let planningId = resp.data.data;
+        //       console.log("id:", planningId);
+        //       for (let i = 0; i < resp.data.data.pictureList.length; i++) {
+        //         if(resp.data.data.pictureList[i].status = true) {
+        //           this.percentage = 100;
+        //         }
+        //       }
+        //       // let path = "/planning_list";
+        //       // this.$router.push(path);
+        //     } else {
+        //       _this.$message({ type: "error", message: resp.data.msg });
+        //     }
+        //   } else {
+        //     _this.$message({ type: "error", message: resp.data.msg });
+        //   }
+        //   console.log("end");
+        // });
       } else {
         this.$message.warning("校验未通过");
       }
@@ -203,14 +233,14 @@ export default {
 <style lang="scss" scoped>
 .planningCreateMain {
   position: relative;
-  width: 100%;
+  // width: 100%;
   padding: 16px;
   margin-top: 20px;
 }
 .anchor-wrapper {
   position: fixed;
   // background: grey;
-  opacity: 0.5;
+  opacity: 0.6;
   right: 0;
   width: 220px;
   height: 300px;
