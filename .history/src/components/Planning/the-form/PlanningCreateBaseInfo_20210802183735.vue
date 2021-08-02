@@ -103,13 +103,7 @@
                       :value="item.value"
                     >
                     </el-option>
-
-                    <el-input
-                      placeholder="输入新增功能"
-                      v-model="extraFunction"
-                    >
-                      <el-button slot="append" icon="el-icon-plus" @click="test"> </el-button>
-                    </el-input>
+                    <span v-on:click="test">test</span>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -260,29 +254,6 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
-      extraFunction: "",
       categoryOptions: [
         {
           value: "1",

@@ -103,13 +103,13 @@
                       :value="item.value"
                     >
                     </el-option>
-
-                    <el-input
-                      placeholder="输入新增功能"
-                      v-model="extraFunction"
-                    >
-                      <el-button slot="append" icon="el-icon-plus" @click="test"> </el-button>
-                    </el-input>
+                    <span v-on:click="test"
+                      >test
+                      <el-input
+                        v-model="input"
+                        placeholder="请输入内容"
+                      ></el-input>
+                    </span>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -282,7 +282,6 @@ export default {
           label: "北京烤鸭",
         },
       ],
-      extraFunction: "",
       categoryOptions: [
         {
           value: "1",

@@ -104,11 +104,11 @@
                     >
                     </el-option>
 
-                    <el-input
-                      placeholder="输入新增功能"
-                      v-model="extraFunction"
-                    >
-                      <el-button slot="append" icon="el-icon-plus" @click="test"> </el-button>
+                    <el-input placeholder="新增功能" v-model="extraFunction">
+                      <el-button
+                        slot="append"
+                        icon="el-icon-plus"
+                      ></el-button>
                     </el-input>
                   </el-select>
                 </el-form-item>

@@ -11,7 +11,7 @@
         <h1>图片附件上传</h1>
         <div
           class="image_progress_item"
-          v-for="item in imageResult"
+          v-for="(item) in imageResult"
           v-bind:key="item.id"
         >
           <span>{{ item.name }}</span>
@@ -275,14 +275,16 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .planningCreateMain {
   position: relative;
+  // width: 100%;
   padding: 16px;
   margin-top: 20px;
 }
 .anchor-wrapper {
   position: fixed;
+  // background: grey;
   opacity: 0.6;
   right: 0;
   width: 220px;
@@ -297,18 +299,15 @@ div[data-section] {
   font-weight: bold;
   padding: 14px 0;
   margin-left: 34px;
+  &::before {
+    content: attr(data-section);
+  }
 }
-div[data-section]::before {
-  content: attr(data-section);
-}
-
 div[data-ismain] {
   font-size: 16px;
   font-weight: bold;
   margin-left: 28px;
-  
-}
-div[data-ismain] ::after {
+  &::after {
     content: "";
     position: absolute;
     left: -16px;
@@ -318,4 +317,5 @@ div[data-ismain] ::after {
     background: #5c658d;
     border-radius: 2px;
   }
+}
 </style>

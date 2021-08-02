@@ -306,9 +306,7 @@ div[data-ismain] {
   font-size: 16px;
   font-weight: bold;
   margin-left: 28px;
-  
-}
-div[data-ismain] ::after {
+  &::after {
     content: "";
     position: absolute;
     left: -16px;
@@ -318,4 +316,5 @@ div[data-ismain] ::after {
     background: #5c658d;
     border-radius: 2px;
   }
+}
 </style>

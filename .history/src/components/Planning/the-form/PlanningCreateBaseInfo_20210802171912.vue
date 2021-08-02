@@ -91,27 +91,9 @@
             <el-row :gutter="20">
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="功能">
-                  <el-select
-                    v-model="formData.function"
-                    multiple
-                    placeholder="请选择"
-                  >
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
-                    >
-                    </el-option>
-
-                    <el-input
-                      placeholder="输入新增功能"
-                      v-model="extraFunction"
-                    >
-                      <el-button slot="append" icon="el-icon-plus" @click="test"> </el-button>
-                    </el-input>
-                  </el-select>
+                  <el-input v-model="formData.function"> </el-input>
                 </el-form-item>
+                <el-button>s</el-button>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="基础机型">
@@ -119,11 +101,7 @@
                 </el-form-item>
               </el-col>
               <el-col :lg="12" :md="8" :xs="24">
-                <el-form-item
-                  label="销售渠道"
-                  class="distribution_channel"
-                  prop="distribution_channel"
-                >
+                <el-form-item label="销售渠道" class="distribution_channel" prop="distribution_channel">
                   <el-cascader
                     style="width: 100%"
                     v-model="formData.distribution_channel"
@@ -137,12 +115,7 @@
             <el-row :gutter="20">
               <el-col :lg="12" :md="24" :xs="24">
                 <el-form-item class="change__point" label="较基础机型变更点">
-                  <el-input
-                    v-model="formData.changePoint"
-                    type="textarea"
-                    :rows="2"
-                    placeholder="请输入内容"
-                  >
+                  <el-input  v-model="formData.changePoint" type="textarea" :rows="2" placeholder="请输入内容">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -260,29 +233,6 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
-      extraFunction: "",
       categoryOptions: [
         {
           value: "1",
@@ -294,15 +244,10 @@ export default {
         },
       ],
       rules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
-        brand: [{ required: true, message: "请输入品牌", trigger: "blur" }],
+        name: [{ required: true, message:"请输入名称", trigger: "blur" }],
+        brand: [{ required: true, message:"请输入品牌", trigger: 'blur'}]
       },
     };
-  },
-  methods: {
-    test() {
-      console.log("testeset");
-    },
   },
   mounted() {
     console.log("form:", this.data);
@@ -372,4 +317,5 @@ export default {
   float: left;
   font-size: 16px;
 }
+
 </style>

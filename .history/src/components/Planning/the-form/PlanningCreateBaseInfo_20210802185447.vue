@@ -104,11 +104,11 @@
                     >
                     </el-option>
 
-                    <el-input
-                      placeholder="输入新增功能"
-                      v-model="extraFunction"
-                    >
-                      <el-button slot="append" icon="el-icon-plus" @click="test"> </el-button>
+                    <el-input placeholder="请输入内容" v-model="extraFunction">
+                      <el-button
+                        slot="append"
+                        icon="el-icon-plus"
+                      ></el-button>
                     </el-input>
                   </el-select>
                 </el-form-item>
@@ -141,7 +141,7 @@
                     v-model="formData.changePoint"
                     type="textarea"
                     :rows="2"
-                    placeholder="请输入内容"
+                    placeholder="新增功能"
                   >
                   </el-input>
                 </el-form-item>
