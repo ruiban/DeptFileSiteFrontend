@@ -35,7 +35,7 @@
                 <el-form-item label="类别" prop="category">
                   <el-select v-model="formData.category" placeholder="请选择">
                     <el-option
-                      v-for="item in formData.categoryOptions"
+                      v-for="item in categoryOptions"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
@@ -97,7 +97,7 @@
                     placeholder="请选择"
                   >
                     <el-option
-                      v-for="item in formData.options"
+                      v-for="item in options"
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"

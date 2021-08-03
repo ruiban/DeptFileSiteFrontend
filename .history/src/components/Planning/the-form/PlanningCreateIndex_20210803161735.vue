@@ -113,11 +113,11 @@ export default {
           extraFunction: "",
           categoryOptions: [
             {
-              value: "柜机",
+              value: "1",
               label: "柜机",
             },
             {
-              value: "挂机",
+              value: "2",
               label: "挂机",
             },
           ],

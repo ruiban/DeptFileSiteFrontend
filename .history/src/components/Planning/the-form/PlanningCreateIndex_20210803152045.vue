@@ -98,26 +98,34 @@ export default {
         form1: {
           options: [
             {
-              value: "新风",
-              label: "新风",
+              value: "选项1",
+              label: "黄金糕",
             },
             {
-              value: "制热",
-              label: "制热",
+              value: "选项2",
+              label: "双皮奶",
             },
             {
-              value: "智眠",
-              label: "智眠",
+              value: "选项3",
+              label: "蚵仔煎",
+            },
+            {
+              value: "选项4",
+              label: "龙须面",
+            },
+            {
+              value: "选项5",
+              label: "北京烤鸭",
             },
           ],
           extraFunction: "",
           categoryOptions: [
             {
-              value: "柜机",
+              value: "1",
               label: "柜机",
             },
             {
-              value: "挂机",
+              value: "2",
               label: "挂机",
             },
           ],
@@ -141,9 +149,9 @@ export default {
       this.postPlanning();
     } else {
       let _this = this;
-      // let formDataMap = this.resolveDataToChannel(
-      //   this.getDistributionChannelList()
-      // );
+      let formDataMap = this.resolveDataToChannel(
+        this.getDistributionChannelList()
+      );
       // _this.formDataMap = Object.assign(_this.formDataMap, formDataMap);
       console.log("createFormDataMap:", _this.formDataMap);
     }

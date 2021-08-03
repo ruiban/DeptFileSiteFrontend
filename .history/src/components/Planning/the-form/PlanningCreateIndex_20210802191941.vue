@@ -40,12 +40,7 @@
     <planning-create-image ref="form2" :data="formDataMap.form2" />
     <div data-section="文档信息" data-ismain></div>
     <planning-create-file-list ref="form3" :data="formDataMap.form3" />
-    <el-button
-      type="primary"
-      @click="handleSave"
-      v-loading.fullscreen.lock="fullscreenLoading"
-      >创建</el-button
-    >
+    <el-button type="primary" @click="handleSave" v-loading.fullscreen.lock="fullscreenLoading">创建</el-button>
   </div>
 </template>
 <script>
@@ -95,33 +90,7 @@ export default {
       count: "",
       pageBlock: null,
       formDataMap: {
-        form1: {
-          options: [
-            {
-              value: "新风",
-              label: "新风",
-            },
-            {
-              value: "制热",
-              label: "制热",
-            },
-            {
-              value: "智眠",
-              label: "智眠",
-            },
-          ],
-          extraFunction: "",
-          categoryOptions: [
-            {
-              value: "柜机",
-              label: "柜机",
-            },
-            {
-              value: "挂机",
-              label: "挂机",
-            },
-          ],
-        },
+        form1: {},
         form2: {},
         form3: {},
       },
@@ -141,10 +110,10 @@ export default {
       this.postPlanning();
     } else {
       let _this = this;
-      // let formDataMap = this.resolveDataToChannel(
-      //   this.getDistributionChannelList()
-      // );
-      // _this.formDataMap = Object.assign(_this.formDataMap, formDataMap);
+      let formDataMap = this.resolveDataToChannel(
+        this.getDistributionChannelList()
+      );
+      _this.formDataMap = Object.assign(formDataMap);
       console.log("createFormDataMap:", _this.formDataMap);
     }
   },
@@ -274,36 +243,35 @@ export default {
         console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
         _this.formDataMap = fullFormData;
-        return;
-        uploadFileRequest("/plan/insert", formData).then((resp) => {
-          if (resp.status == 200) {
-            if (resp.data.code == 1000) {
-              _this.$message({ type: "success", message: "创建成功" });
-              let planningId = resp.data.data;
-              console.log("id:", planningId);
-              // _this.imageResult = resp.data.data.pictureList;
-              console.log("imageResult", _this.imageResult);
-              for (let i = 0; i < resp.data.data.pictureList.length; i++) {
-                if ((resp.data.data.pictureList[i].status = true)) {
-                  _this.imageResult[i].percentage = 100;
-                } else {
-                  _this.imageResult[i].percentage = 50;
-                }
-              }
-              this.startDivi();
-              // let path = "/planning_list";
-              // this.$router.push(path);
-            } else {
-              _this.$message({ type: "error", message: resp.data.msg });
-            }
-          } else {
-            _this.$message({ type: "error", message: resp.data.msg });
-          }
-          console.log("end");
-        });
-      } else {
-        this.$message.warning("校验未通过");
-      }
+      //   uploadFileRequest("/plan/insert", formData).then((resp) => {
+      //     if (resp.status == 200) {
+      //       if (resp.data.code == 1000) {
+      //         _this.$message({ type: "success", message: "创建成功" });
+      //         let planningId = resp.data.data;
+      //         console.log("id:", planningId);
+      //         // _this.imageResult = resp.data.data.pictureList;
+      //         console.log("imageResult", _this.imageResult);
+      //         for (let i = 0; i < resp.data.data.pictureList.length; i++) {
+      //           if ((resp.data.data.pictureList[i].status = true)) {
+      //             _this.imageResult[i].percentage = 100;
+      //           } else {
+      //             _this.imageResult[i].percentage = 50;
+      //           }
+      //         }
+      //         this.startDivi();
+      //         // let path = "/planning_list";
+      //         // this.$router.push(path);
+      //       } else {
+      //         _this.$message({ type: "error", message: resp.data.msg });
+      //       }
+      //     } else {
+      //       _this.$message({ type: "error", message: resp.data.msg });
+      //     }
+      //     console.log("end");
+      //   });
+      // } else {
+      //   this.$message.warning("校验未通过");
+      // }
     },
   },
 };
@@ -339,15 +307,16 @@ div[data-ismain] {
   font-size: 16px;
   font-weight: bold;
   margin-left: 28px;
+  
 }
 div[data-ismain] ::after {
-  content: "";
-  position: absolute;
-  left: -16px;
-  top: 14px;
-  width: 4px;
-  height: 16px;
-  background: #5c658d;
-  border-radius: 2px;
-}
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 14px;
+    width: 4px;
+    height: 16px;
+    background: #5c658d;
+    border-radius: 2px;
+  }
 </style>
