@@ -216,24 +216,24 @@
 
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="智能板块负责人">
-                  <el-input v-model="formData.smart_leader"> </el-input>
+                  <el-input v-model="formData."> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="产品策划负责人">
-                  <el-input v-model="formData.plan_leader"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row :gutter="20">
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="遥控器负责人主任">
-                  <el-input v-model="formData.remote_director"> </el-input>
+                  <el-input v-model="formData.brand"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
                 <el-form-item label="智能板块负责人主任">
-                  <el-input v-model="formData.smart_director"> </el-input>
+                  <el-input v-model="formData.name"> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :lg="6" :md="8" :xs="24">
@@ -241,7 +241,7 @@
                   label="产品策划负责人主任"
                   class="distribution_channel"
                 >
-                  <el-input v-model="formData.plan_director"> </el-input>
+                  <el-input v-model="formData.name"> </el-input>
                 </el-form-item>
               </el-col>
             </el-row>

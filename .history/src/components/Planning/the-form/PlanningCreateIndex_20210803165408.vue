@@ -274,7 +274,7 @@ export default {
         console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
         _this.formDataMap = fullFormData;
-        uploadFileRequest("/plan/insert", formData).then((resp) => {
+        uploadFileRequest("/plan/inserts", formData).then((resp) => {
           if (resp.status == 200) {
             if (resp.data.code == 1000) {
               _this.$message({ type: "success", message: "创建成功" });
