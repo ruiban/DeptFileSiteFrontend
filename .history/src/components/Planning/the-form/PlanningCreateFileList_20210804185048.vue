@@ -560,8 +560,7 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
-      appearanceState: true,
-      appearanceData: "",
+      // appearanceState: true,
       planningData: "",
       planningState: "",
       disabled: false,

@@ -25,6 +25,7 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">返回列表</el-button>
+        {{ count }}秒后跳转至详情
         <el-button type="primary" @click="dialogVisible = false">
           查看详情</el-button
         >
@@ -125,7 +126,7 @@ export default {
           imageList: [],
         },
         form3: {
-          appearance_issue_state: '1'
+          fileList: [],
         },
       },
       imageResult: {},
@@ -254,7 +255,6 @@ export default {
         let fullFormData = {};
         formKeys.map((formKey) => {
           const partFormData = this.$refs[formKey].formData;
-          console.log('partFormData', partFormData);
           Object.assign(fullFormData, partFormData);
         });
         Object.keys(fullFormData).forEach((key) => {
@@ -275,11 +275,9 @@ export default {
             formData.append("fileList", fullFormData.fileList[i].raw);
           }
         }
-        console.log("formData", formData);
+        console.log("formData", fullFormData);
         console.log("fullformData:", fullFormData);
         _this.formDataMap = fullFormData;
-        // 调试前端，中断数据传递至后端
-        return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {
           if (resp.status == 200) {
             if (resp.data.code == 1000) {

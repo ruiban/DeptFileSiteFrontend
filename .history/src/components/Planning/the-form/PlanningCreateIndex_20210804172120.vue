@@ -125,7 +125,7 @@ export default {
           imageList: [],
         },
         form3: {
-          appearance_issue_state: '1'
+          
         },
       },
       imageResult: {},
@@ -254,7 +254,6 @@ export default {
         let fullFormData = {};
         formKeys.map((formKey) => {
           const partFormData = this.$refs[formKey].formData;
-          console.log('partFormData', partFormData);
           Object.assign(fullFormData, partFormData);
         });
         Object.keys(fullFormData).forEach((key) => {
@@ -278,7 +277,6 @@ export default {
         console.log("formData", formData);
         console.log("fullformData:", fullFormData);
         _this.formDataMap = fullFormData;
-        // 调试前端，中断数据传递至后端
         return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {
           if (resp.status == 200) {

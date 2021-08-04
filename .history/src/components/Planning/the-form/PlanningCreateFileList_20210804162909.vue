@@ -27,7 +27,7 @@
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-right">
                     <el-date-picker
-                      v-model="formData.appearance_issue_time"
+                      v-model="formData.appearanceDate"
                       type="date"
                       value-format="yyyy-MM-dd"
                       placeholder="选择日期"
@@ -42,13 +42,10 @@
                   <div class="grid-content bg-purple text-left">
                     <el-switch
                       style="display: block"
-                      v-model="formData.appearance_issue_state"
+                      v-model="formData.appearanceState"
                       active-text="已完成"
                       inactive-text="未完成"
-                      active-value="1"
-                      inactive-value="0"
                     >
-                      >
                     </el-switch>
                   </div>
                 </el-col>
@@ -323,8 +320,8 @@
               <el-row :gutter="40">
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-left">
-                    <i class="iconfont icon-kongtiao"></i>
-                    <span class="red">空壳功能确定完成时间</span>
+                     <i class="iconfont icon-kongtiao"></i>
+                     <span class="red">空壳功能确定完成时间</span>
                   </div>
                 </el-col>
                 <el-col :span="12">
@@ -560,8 +557,8 @@ export default {
   mixins: [SuperFormMixin],
   data() {
     return {
-      appearanceState: true,
       appearanceData: "",
+      appearanceState: true,
       planningData: "",
       planningState: "",
       disabled: false,
@@ -570,6 +567,7 @@ export default {
       currentDate: new Date(),
       appearanceFileList: [],
       planningFileList: [],
+      formData: {},
     };
   },
   methods: {
