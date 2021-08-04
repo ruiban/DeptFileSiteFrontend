@@ -289,7 +289,7 @@ export default {
                   _this.imageResult[i].percentage = 50;
                 }
               }
-              this.startDivi();
+              // this.startDivi();
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {

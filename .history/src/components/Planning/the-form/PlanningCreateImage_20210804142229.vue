@@ -134,31 +134,29 @@ export default {
       console.log("fileList:", fileList);
       console.log("imageList:", this.imageList);
       let imageName = file.name;
-      console.log("imageName:", imageName);
       let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+      const findCommonNameIndex = this.imageList.findIndex((item) => {
+        console.log("name:", item.name);
+        return item.name == imageName;
+      });
+      if (findCommonNameIndex !== -1) {
+        this.$message.warning("不能上传同名文件");
+        const selectFileList = fileList.filter((item) => {
+          return item.name != name;
+        });
+        console.log("selectFileList:", selectFileList);
+        this.imageList = selectFileList;
+        return;
+      } else {
+        this.imageList = fileList;
+      }
       if (regex.test(imageName.toLowerCase())) {
         this.formData.imageList = this.$refs.imageUpload.uploadFiles;
         console.log(this.formData);
       } else {
         this.$message.error("请选择图片文件");
-        this.fileList = fileList.splice(-1);
         return;
       }
-      // const findCommonNameIndex = this.imageList.findIndex((item) => {
-      //   return item.name == imageName;
-      // });
-      // console.log("result:", findCommonNameIndex);
-      // if (findCommonNameIndex !== -1 && findCommonNameIndex !== 1) {
-      //   this.$message.warning("不能上传同名文件");
-      //   const selectFileList = fileList.filter((item) => {
-      //     return item.name != imageName;
-      //   });
-      //   console.log("selectFileList:", selectFileList);
-      //   this.imageList = this.imageList.slice(-1);
-      //   return;
-      // } else {
-      //   this.imageList = fileList;
-      // }
     },
     // 覆盖默认的上传行为
     validForm() {
@@ -211,8 +209,8 @@ export default {
 .image_card /deep/ .el-upload-list__item-actions {
   height: 330px;
 }
-.image-content span {
-  display: inline-block;
+.image-content span{
+    display: inline-block;
   /* line-height: 36px; */
   width: 100%;
   margin-left: 4px;

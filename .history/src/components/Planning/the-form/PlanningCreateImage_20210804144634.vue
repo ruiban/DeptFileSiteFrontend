@@ -141,7 +141,7 @@ export default {
         console.log(this.formData);
       } else {
         this.$message.error("请选择图片文件");
-        this.fileList = fileList.splice(-1);
+        this.fileList = fileList.slice(-1);
         return;
       }
       // const findCommonNameIndex = this.imageList.findIndex((item) => {
