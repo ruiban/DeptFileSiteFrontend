@@ -26,6 +26,7 @@
                       :on-remove="handleRemove"
                       :auto-upload="false"
                       :on-change="changeImage"
+                      
                       :file-list="formData.imageList"
                     >
                       <i slot="default" class="el-icon-plus"></i>
@@ -106,9 +107,6 @@ export default {
       },
     };
   },
-  mounted() {
-    console.log("form2", this.$data);
-  },
   methods: {
     handleRemove(file) {
       let fileList = this.$refs.imageUpload.uploadFiles;
@@ -117,6 +115,7 @@ export default {
         return fileItem.uid === file.uid;
       });
       fileList.splice(index, 1);
+      this.imageList = fileList;
       this.formData.imageList = fileList;
       console.log(this.formData);
     },
@@ -132,35 +131,33 @@ export default {
       const { uid, raw, size } = file;
       console.log("file:", file);
       console.log("fileList:", fileList);
-      console.log("imageList:", this.formData.imageList);
+      console.log("imageList:", this.imageList);
       let imageName = file.name;
       console.log("imageName:", imageName);
       let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
       if (regex.test(imageName.toLowerCase())) {
-        const findCommonNameIndex = this.formData.imageList.findIndex(
-          (item) => {
-            return item.name == imageName;
-          }
-        );
-        console.log("result:", findCommonNameIndex);
-        if (findCommonNameIndex !== -1) {
-          this.$message.warning("不能上传同名文件");
-          const selectFileList = fileList.filter((item) => {
-            return item.name != imageName;
-          });
-          console.log("selectFileList:", selectFileList);
-          this.fileList = fileList.splice(-1);
-          return;
-        } else {
-          this.formData.imageList = this.$refs.imageUpload.uploadFiles;
-          this.imageList = fileList;
-        }
+        this.formData.imageList = this.$refs.imageUpload.uploadFiles;
         console.log(this.formData);
       } else {
         this.$message.error("请选择图片文件");
         this.fileList = fileList.splice(-1);
         return;
       }
+      // const findCommonNameIndex = this.imageList.findIndex((item) => {
+      //   return item.name == imageName;
+      // });
+      // console.log("result:", findCommonNameIndex);
+      // if (findCommonNameIndex !== -1 && findCommonNameIndex !== 1) {
+      //   this.$message.warning("不能上传同名文件");
+      //   const selectFileList = fileList.filter((item) => {
+      //     return item.name != imageName;
+      //   });
+      //   console.log("selectFileList:", selectFileList);
+      //   this.imageList = this.imageList.slice(-1);
+      //   return;
+      // } else {
+      //   this.imageList = fileList;
+      // }
     },
     // 覆盖默认的上传行为
     validForm() {

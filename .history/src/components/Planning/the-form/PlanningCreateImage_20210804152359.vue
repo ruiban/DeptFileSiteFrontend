@@ -143,7 +143,7 @@ export default {
           }
         );
         console.log("result:", findCommonNameIndex);
-        if (findCommonNameIndex !== -1) {
+        if (findCommonNameIndex !== -1 && findCommonNameIndex !== 1) {
           this.$message.warning("不能上传同名文件");
           const selectFileList = fileList.filter((item) => {
             return item.name != imageName;

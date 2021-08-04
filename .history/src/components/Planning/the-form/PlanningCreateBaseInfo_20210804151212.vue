@@ -273,7 +273,7 @@ export default {
     },
   },
   mounted() {
-    console.log("form1:", this.rules);
+    console.log("form1:", this);
   },
 };
 </script>

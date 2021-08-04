@@ -122,12 +122,8 @@ export default {
             },
           ],
         },
-        form2: {
-          imageList: [],
-        },
-        form3: {
-          fileList: [],
-        },
+        form2: {},
+        form3: {},
       },
       imageResult: {},
       fileResult: {},

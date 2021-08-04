@@ -137,22 +137,20 @@ export default {
       console.log("imageName:", imageName);
       let regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
       if (regex.test(imageName.toLowerCase())) {
-        const findCommonNameIndex = this.formData.imageList.findIndex(
-          (item) => {
-            return item.name == imageName;
-          }
-        );
+        this.formData.imageList = this.$refs.imageUpload.uploadFiles;
+        const findCommonNameIndex = this.imageList.findIndex((item) => {
+          return item.name == imageName;
+        });
         console.log("result:", findCommonNameIndex);
-        if (findCommonNameIndex !== -1) {
+        if (findCommonNameIndex !== -1 && findCommonNameIndex !== 1) {
           this.$message.warning("不能上传同名文件");
           const selectFileList = fileList.filter((item) => {
             return item.name != imageName;
           });
           console.log("selectFileList:", selectFileList);
-          this.fileList = fileList.splice(-1);
+          this.imageList = this.imageList.slice(-1);
           return;
         } else {
-          this.formData.imageList = this.$refs.imageUpload.uploadFiles;
           this.imageList = fileList;
         }
         console.log(this.formData);
