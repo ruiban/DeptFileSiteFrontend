@@ -17,7 +17,7 @@
                 :disabled="formDisabled"
               >
                 <el-form-item class="image__upload">
-                  <el-col :span="24">
+                  <el-col :span="4">
                     <el-upload
                       ref="imageUpload"
                       action="#"

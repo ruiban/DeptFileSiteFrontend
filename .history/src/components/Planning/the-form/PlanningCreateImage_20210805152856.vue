@@ -6,28 +6,28 @@
       </div>
       <div class="text item">
         <div class="box-card image_card">
-          <el-row>
-            <div class="text item">
-              <el-form
-                ref="form"
-                :model="formData"
-                :rules="rules"
-                label-width="80px"
-                size="small"
-                :disabled="formDisabled"
-              >
+          <div class="text item">
+            <el-form
+              ref="form"
+              :model="formData"
+              :rules="rules"
+              label-width="80px"
+              size="small"
+              :disabled="formDisabled"
+            >
+              <el-row>
                 <el-form-item class="image__upload">
-                  <el-col :span="24">
-                    <el-upload
-                      ref="imageUpload"
-                      action="#"
-                      list-type="picture-card"
-                      :on-preview="handlePictureCardPreview"
-                      :on-remove="handleRemove"
-                      :auto-upload="false"
-                      :on-change="changeImage"
-                      :file-list="formData.imageList"
-                    >
+                  <el-upload
+                    ref="imageUpload"
+                    action="#"
+                    list-type="picture-card"
+                    :on-preview="handlePictureCardPreview"
+                    :on-remove="handleRemove"
+                    :auto-upload="false"
+                    :on-change="changeImage"
+                    :file-list="formData.imageList"
+                  >
+                    <el-col :span="24">
                       <i slot="default" class="el-icon-plus"></i>
 
                       <div slot="file" slot-scope="{ file }">
@@ -68,12 +68,11 @@
                           </div>
                         </el-card>
                       </div>
-
-                      <div slot="tip" class="el-upload__tip">
-                        只能上传jpg/png/gif文件，且不超过10mb。
-                      </div>
-                    </el-upload>
-                  </el-col>
+                    </el-col>
+                    <div slot="tip" class="el-upload__tip">
+                      只能上传jpg/png/gif文件，且不超过10mb。
+                    </div>
+                  </el-upload>
                   <el-dialog :visible.sync="dialogVisible">
                     <img width="100%" :src="dialogImageUrl" alt="" />
                     <div class="text-center">
@@ -81,9 +80,9 @@
                     </div>
                   </el-dialog>
                 </el-form-item>
-              </el-form>
-            </div>
-          </el-row>
+              </el-row>
+            </el-form>
+          </div>
         </div>
       </div>
     </el-card>
@@ -191,7 +190,7 @@ export default {
 }
 .image_card /deep/ .el-upload--picture-card {
   height: 360px;
-
+  margin-left: 20px;
   width: 340px;
   line-height: 360px;
 }

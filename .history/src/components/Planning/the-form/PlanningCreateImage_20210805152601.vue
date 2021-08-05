@@ -6,18 +6,18 @@
       </div>
       <div class="text item">
         <div class="box-card image_card">
-          <el-row>
-            <div class="text item">
-              <el-form
-                ref="form"
-                :model="formData"
-                :rules="rules"
-                label-width="80px"
-                size="small"
-                :disabled="formDisabled"
-              >
-                <el-form-item class="image__upload">
-                  <el-col :span="24">
+          <div class="text item">
+            <el-form
+              ref="form"
+              :model="formData"
+              :rules="rules"
+              label-width="80px"
+              size="small"
+              :disabled="formDisabled"
+            >
+              <el-row>
+                <el-col :span="6">
+                  <el-form-item class="image__upload">
                     <el-upload
                       ref="imageUpload"
                       action="#"
@@ -68,22 +68,21 @@
                           </div>
                         </el-card>
                       </div>
-
                       <div slot="tip" class="el-upload__tip">
                         只能上传jpg/png/gif文件，且不超过10mb。
                       </div>
                     </el-upload>
-                  </el-col>
-                  <el-dialog :visible.sync="dialogVisible">
-                    <img width="100%" :src="dialogImageUrl" alt="" />
-                    <div class="text-center">
-                      <span>{{ dialogImageName }}</span>
-                    </div>
-                  </el-dialog>
-                </el-form-item>
-              </el-form>
-            </div>
-          </el-row>
+                    <el-dialog :visible.sync="dialogVisible">
+                      <img width="100%" :src="dialogImageUrl" alt="" />
+                      <div class="text-center">
+                        <span>{{ dialogImageName }}</span>
+                      </div>
+                    </el-dialog>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
+          </div>
         </div>
       </div>
     </el-card>
@@ -102,6 +101,7 @@ export default {
       dialogImageName: "",
       disabled: false,
       rules: {},
+      
     };
   },
   mounted() {
@@ -147,7 +147,7 @@ export default {
             return item.name != imageName;
           });
           console.log("selectFileList:", selectFileList);
-          this.fileList = fileList.splice(-1);
+          fileList = fileList.splice(-1);
           return;
         } else {
           this.formData.imageList = this.$refs.imageUpload.uploadFiles;
@@ -191,7 +191,7 @@ export default {
 }
 .image_card /deep/ .el-upload--picture-card {
   height: 360px;
-
+  margin-left: 20px;
   width: 340px;
   line-height: 360px;
 }
