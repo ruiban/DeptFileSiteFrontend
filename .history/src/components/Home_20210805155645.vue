@@ -293,7 +293,7 @@ export default {
 </script>
 <style>
 .el-header {
-  background: rgb(42, 103, 226);
+  background-color: #3399cc;
   color: #fff;
   text-align: left;
   display: flex;

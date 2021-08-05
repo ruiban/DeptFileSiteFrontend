@@ -78,9 +78,9 @@ export default {
       formType: this.formType,
     };
   },
-  beforeDestroy() {
+    beforeDestroy() {
     // window.removeEventListener("scroll", this.pageScrollHandler);
-    console.log("s");
+    console.log('s');
   },
   //data数据
   data() {
@@ -147,7 +147,6 @@ export default {
   },
   //methods方法
   created() {
-    console.warn("create");
     // 根据页面类型获取数据
     if (~["edit", "detail"].findIndex((i) => i === this.formType)) {
       this.postPlanning();
@@ -250,7 +249,7 @@ export default {
     // 表单上传
     handleSave() {
       var _this = this;
-      // _this.dialogVisible = true;
+      _this.dialogVisible = true;
       const formKeys = Object.keys(_this.formDataMap);
       console.log("formKeys", _this.formDataMap);
       const validResults = formKeys.map((formKey) =>
@@ -286,7 +285,7 @@ export default {
         }
         console.log("formData", formData);
         console.log("fullformData:", fullFormData);
-        
+        _this.formDataMap = fullFormData;
         // 调试前端，中断数据传递至后端
         // return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {
@@ -308,10 +307,10 @@ export default {
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {
-              this.$message({ type: "warning", message: resp.data.msg });
+              _this.$message({ type: "error", message: resp.data.msg });
             }
           } else {
-            this.$message({ type: "warning", message: resp.data.msg });
+            _this.$message({ type: "error", message: resp.data.msg });
           }
           console.log("end");
         });

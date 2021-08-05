@@ -52,9 +52,8 @@
     </el-aside>
     <el-container class="sub_container">
       <el-header>
-        
+        <div class="home_title"></div>
         <i class="iconfont icon-gelilogo"></i>
-        <div class="home_title">产品策划成本分析系统</div>
         <div class="home_userinfoContainer">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link home_userinfo">
@@ -293,7 +292,7 @@ export default {
 </script>
 <style>
 .el-header {
-  background: rgb(42, 103, 226);
+  background-color: #3399cc;
   color: #fff;
   text-align: left;
   display: flex;
@@ -342,7 +341,7 @@ export default {
   /* display: none; */
 }
 .icon-gelilogo {
-  font-size: 80px;
+  font-size: 40px;
 }
 .aside_header {
   padding: 16px;

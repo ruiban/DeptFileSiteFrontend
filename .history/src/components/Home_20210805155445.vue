@@ -5,6 +5,7 @@
       class="menu_wrapper"
       v-bind:class="{ menu_wrapper_collapse: collapse }"
     >
+    
       <el-menu
         default-active="1"
         :collapse="collapse"
@@ -15,8 +16,9 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        
+        <i class="iconfont icon-gelilogo"></i>
         <template v-for="(item, index) in activeRoutes">
+          
           <el-submenu
             :index="index + ''"
             :key="index"
@@ -52,9 +54,8 @@
     </el-aside>
     <el-container class="sub_container">
       <el-header>
+        <div class="home_title">产品策划数据管理系统</div>
         
-        <i class="iconfont icon-gelilogo"></i>
-        <div class="home_title">产品策划成本分析系统</div>
         <div class="home_userinfoContainer">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link home_userinfo">
@@ -293,7 +294,7 @@ export default {
 </script>
 <style>
 .el-header {
-  background: rgb(42, 103, 226);
+  background-color: #3399cc;
   color: #fff;
   text-align: left;
   display: flex;
@@ -342,7 +343,7 @@ export default {
   /* display: none; */
 }
 .icon-gelilogo {
-  font-size: 80px;
+  font-size: 40px;
 }
 .aside_header {
   padding: 16px;

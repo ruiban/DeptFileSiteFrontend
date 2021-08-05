@@ -286,7 +286,7 @@ export default {
         }
         console.log("formData", formData);
         console.log("fullformData:", fullFormData);
-        
+        _this.formDataMap = fullFormData;
         // 调试前端，中断数据传递至后端
         // return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {

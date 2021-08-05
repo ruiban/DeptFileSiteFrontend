@@ -147,7 +147,6 @@ export default {
   },
   //methods方法
   created() {
-    console.warn("create");
     // 根据页面类型获取数据
     if (~["edit", "detail"].findIndex((i) => i === this.formType)) {
       this.postPlanning();
@@ -286,7 +285,7 @@ export default {
         }
         console.log("formData", formData);
         console.log("fullformData:", fullFormData);
-        
+        _this.formDataMap = fullFormData;
         // 调试前端，中断数据传递至后端
         // return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {
@@ -308,10 +307,10 @@ export default {
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {
-              this.$message({ type: "warning", message: resp.data.msg });
+              this.$message({ type: "error", message: resp.data.msg });
             }
           } else {
-            this.$message({ type: "warning", message: resp.data.msg });
+            this.$message({ type: "error", message: resp.data.msg });
           }
           console.log("end");
         });

@@ -293,7 +293,7 @@ export default {
 </script>
 <style>
 .el-header {
-  background: rgb(42, 103, 226);
+  background: linear-gradient(to right, #58a 33%, #fb3 0,);
   color: #fff;
   text-align: left;
   display: flex;

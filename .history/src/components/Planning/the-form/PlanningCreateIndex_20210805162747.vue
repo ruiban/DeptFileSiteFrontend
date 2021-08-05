@@ -37,7 +37,7 @@
     <keep-alive>
       <planning-create-base-info ref="form1" :data="formDataMap.form1" />
     </keep-alive>
-
+    
     <div data-section="产品图片" data-ismain></div>
     <planning-create-image ref="form2" :data="formDataMap.form2" />
     <div data-section="文档信息" data-ismain></div>
@@ -77,10 +77,6 @@ export default {
     return {
       formType: this.formType,
     };
-  },
-  beforeDestroy() {
-    // window.removeEventListener("scroll", this.pageScrollHandler);
-    console.log("s");
   },
   //data数据
   data() {
@@ -132,7 +128,7 @@ export default {
           imageList: [],
         },
         form3: {
-          appearance_issue_state: "1",
+          appearance_issue_state: '1',
           appearance_file_list: [],
         },
       },
@@ -147,7 +143,6 @@ export default {
   },
   //methods方法
   created() {
-    console.warn("create");
     // 根据页面类型获取数据
     if (~["edit", "detail"].findIndex((i) => i === this.formType)) {
       this.postPlanning();
@@ -161,6 +156,7 @@ export default {
     }
   },
   mounted() {
+    
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
@@ -250,7 +246,7 @@ export default {
     // 表单上传
     handleSave() {
       var _this = this;
-      // _this.dialogVisible = true;
+      _this.dialogVisible = true;
       const formKeys = Object.keys(_this.formDataMap);
       console.log("formKeys", _this.formDataMap);
       const validResults = formKeys.map((formKey) =>
@@ -262,7 +258,7 @@ export default {
         let fullFormData = {};
         formKeys.map((formKey) => {
           const partFormData = this.$refs[formKey].formData;
-          console.log("partFormData", partFormData);
+          console.log('partFormData', partFormData);
           Object.assign(fullFormData, partFormData);
         });
         Object.keys(fullFormData).forEach((key) => {
@@ -278,15 +274,12 @@ export default {
         formData.delete("appearance_file_list");
         if (fullFormData.appearance_file_list) {
           for (let i = 0; i < fullFormData.appearance_file_list.length; i++) {
-            formData.append(
-              "appearance_file_list",
-              fullFormData.appearance_file_list[i].raw
-            );
+            formData.append("appearance_file_list", fullFormData.appearance_file_list[i].raw);
           }
         }
         console.log("formData", formData);
         console.log("fullformData:", fullFormData);
-        
+        _this.formDataMap = fullFormData;
         // 调试前端，中断数据传递至后端
         // return;
         uploadFileRequest("/plan/insert", formData).then((resp) => {
@@ -308,10 +301,10 @@ export default {
               // let path = "/planning_list";
               // this.$router.push(path);
             } else {
-              this.$message({ type: "warning", message: resp.data.msg });
+              _this.$message({ type: "error", message: resp.data.msg });
             }
           } else {
-            this.$message({ type: "warning", message: resp.data.msg });
+            _this.$message({ type: "error", message: resp.data.msg });
           }
           console.log("end");
         });
