@@ -279,7 +279,7 @@ export default {
         _this.formDataMap = fullFormData;
         // 调试前端，中断数据传递至后端
         // return;
-        uploadFileRequest("/plan/insert", formData).then((resp) => {
+        uploadFileRequest("/plan/inserts", formData).then((resp) => {
           if (resp.status == 200) {
             if (resp.data.code == 1000) {
               _this.$message({ type: "success", message: "创建成功" });

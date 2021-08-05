@@ -590,10 +590,10 @@ export default {
         fileList = fileList.splice(-1);
         return;
       } else {
-        this.formData.appearance_file_list =
-          this.$refs.appearanceFileUpload.uploadFiles;
+        this.formData.appearanceFileList = fileList;
       }
-
+      this.formData.appearance_file_list =
+        this.$refs.appearanceFileUpload.uploadFiles;
       console.log("data:", file, this.formData.appearance_file_list);
     },
     selectAppearanceFile() {

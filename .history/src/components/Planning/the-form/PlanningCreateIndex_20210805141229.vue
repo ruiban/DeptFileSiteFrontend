@@ -271,7 +271,7 @@ export default {
         formData.delete("appearance_file_list");
         if (fullFormData.appearance_file_list) {
           for (let i = 0; i < fullFormData.appearance_file_list.length; i++) {
-            formData.append("appearance_file_list", fullFormData.appearance_file_list[i].raw);
+            formData.append("fileList", fullFormData.appearance_file_list[i].raw);
           }
         }
         console.log("formData", formData);

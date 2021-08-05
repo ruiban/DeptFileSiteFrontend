@@ -573,15 +573,15 @@ export default {
   },
   methods: {
     handleAppearanceChange(file, fileList) {
-      file["category"] = "appearance";
       console.log("file:", file);
+      
       // const { uid, raw, size } = file
       // console.log("change:", fileList, this.formData.appearance_file_list)
       let fileName = file.name;
       // console.log('fileName:', fileName);
       const findCommonNameIndex = this.formData.appearance_file_list.findIndex(
         (item) => {
-          return item.name == fileName;
+          return (item.name == fileName);
         }
       );
       // console.log("result:", findCommonNameIndex);
@@ -590,10 +590,10 @@ export default {
         fileList = fileList.splice(-1);
         return;
       } else {
-        this.formData.appearance_file_list =
-          this.$refs.appearanceFileUpload.uploadFiles;
+        this.formData.appearanceFileList = fileList;
+        
       }
-
+      this.formData.appearance_file_list = this.$refs.appearanceFileUpload.uploadFiles;
       console.log("data:", file, this.formData.appearance_file_list);
     },
     selectAppearanceFile() {
