@@ -126,7 +126,7 @@ export default {
         },
         form3: {
           appearance_issue_state: '1',
-          appearance_file_list: [],
+          appearanceFileList: [],
         },
       },
       imageResult: {},

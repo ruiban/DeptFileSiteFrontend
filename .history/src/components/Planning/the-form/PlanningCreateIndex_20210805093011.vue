@@ -125,8 +125,7 @@ export default {
           imageList: [],
         },
         form3: {
-          appearance_issue_state: '1',
-          appearance_file_list: [],
+          appearance_issue_state: '1'
         },
       },
       imageResult: {},
@@ -262,6 +261,8 @@ export default {
           formData.append(key, fullFormData[key]);
         });
         // 校验结束
+        _this.imageResult = fullFormData.imageList;
+        console.log("imageResult", _this.imageResult);
         formData.delete("imageList");
         if (fullFormData.imageList) {
           for (let i = 0; i < fullFormData.imageList.length; i++) {

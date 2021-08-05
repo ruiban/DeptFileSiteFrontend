@@ -584,14 +584,14 @@ export default {
         }
       );
       // console.log("result:", findCommonNameIndex);
-      if (findCommonNameIndex !== -1) {
-        this.$message.warning("不能上传同名文件");
-        fileList = fileList.splice(-1);
-        return;
-      } else {
-        this.formData.appearanceFileList = fileList;
+      // if (findCommonNameIndex !== -1) {
+      //   this.$message.warning("不能上传同名文件");
+      //   fileList = fileList.splice(-1);
+      //   return;
+      // } else {
+      //   this.formData.appearanceFileList = fileList;
         
-      }
+      // }
       this.formData.appearance_file_list = this.$refs.appearanceFileUpload.uploadFiles;
       console.log("data:", file, this.formData.appearance_file_list);
     },

@@ -573,25 +573,23 @@ export default {
   },
   methods: {
     handleAppearanceChange(file, fileList) {
-      console.log(this);
-      // const { uid, raw, size } = file
-      // console.log("change:", fileList, this.formData.appearance_file_list)
+      console.log("change:", fileList, this.formData.appearance_file_list)
       let fileName = file.name;
-      // console.log('fileName:', fileName);
+      console.log('fileName:', fileName);
       const findCommonNameIndex = this.formData.appearance_file_list.findIndex(
         (item) => {
-          return (item.name == fileName);
+          return (item.name = fileName);
         }
       );
-      // console.log("result:", findCommonNameIndex);
-      if (findCommonNameIndex !== -1) {
-        this.$message.warning("不能上传同名文件");
-        fileList = fileList.splice(-1);
-        return;
-      } else {
-        this.formData.appearanceFileList = fileList;
+      console.log("result:", findCommonNameIndex);
+      // if (findCommonNameIndex !== -1) {
+      //   this.$message.warning("不能上传同名文件");
+      //   fileList = fileList.splice(-1);
+      //   return;
+      // } else {
+      //   this.formData.appearanceFileList = fileList;
         
-      }
+      // }
       this.formData.appearance_file_list = this.$refs.appearanceFileUpload.uploadFiles;
       console.log("data:", file, this.formData.appearance_file_list);
     },
@@ -604,8 +602,7 @@ export default {
     handleAppearanceRemove(file) {
       let fileList = this.$refs.appearanceFileUpload.uploadFiles;
       this.fileRemove(file, fileList);
-      this.formData.appearance_file_list = fileList;
-      console.log(this);
+      this.appearance_file_list = fileList;
     },
     fileRemove(file, fileList) {
       let index = fileList.findIndex((fileItem) => {
@@ -615,7 +612,7 @@ export default {
     },
   },
   mounted() {
-    console.log("form3", this);
+    console.log("form3", this.$data);
   },
 };
 </script>

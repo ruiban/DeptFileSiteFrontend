@@ -147,10 +147,11 @@ export default {
             return item.name != imageName;
           });
           console.log("selectFileList:", selectFileList);
-          fileList = fileList.splice(-1);
+          this.fileList = fileList.splice(-1);
           return;
         } else {
           this.formData.imageList = this.$refs.imageUpload.uploadFiles;
+          this.imageList = fileList;
         }
         console.log(this.formData);
       } else {
