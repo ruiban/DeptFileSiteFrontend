@@ -280,18 +280,18 @@
               </el-row>
             </el-col>
             <!-- 第二行第二列 -->
-           <el-col :span="12">
+            <el-col :span="12">
               <el-row :gutter="40">
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-left">
-                    <i class="iconfont icon-xilie"></i>
-                    <span class="red">系列名称确定完成时间</span>
+                    <i class="iconfont icon-tuijian"></i>
+                    <span class="red">产品推荐会召开完成时间</span>
                   </div>
                 </el-col>
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-right">
                     <el-date-picker
-                      v-model="formData.series_name_date"
+                      v-model="formData.recommend_meeting_date"
                       type="date"
                       placeholder="选择日期"
                       size="medium"
@@ -305,7 +305,7 @@
                   <div class="grid-content bg-purple text-left">
                     <el-switch
                       style="display: block"
-                      v-model="formData.series_name_state"
+                      v-model="formData.recommend_meeting_state"
                       active-color="#13ce66"
                       inactive-color="#ff4949"
                       active-text="已完成"
@@ -356,18 +356,18 @@
               </el-row>
             </el-col>
             <!-- 第三行第二列 -->
-             <el-col :span="12">
+            <el-col :span="12">
               <el-row :gutter="40">
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-left">
-                    <i class="iconfont icon-pingshen"></i>
-                    <span class="red">样机评审完成时间</span>
+                    <i class="iconfont icon-xilie"></i>
+                    <span class="red">系列名称确定完成时间</span>
                   </div>
                 </el-col>
                 <el-col :span="12">
                   <div class="grid-content bg-purple text-right">
                     <el-date-picker
-                      v-model="formData.prototype_date"
+                      v-model="formData.series_name_date"
                       type="date"
                       placeholder="选择日期"
                       size="medium"
@@ -381,7 +381,7 @@
                   <div class="grid-content bg-purple text-left">
                     <el-switch
                       style="display: block"
-                      v-model="formData.prototype_state"
+                      v-model="formData.series_name_state"
                       active-color="#13ce66"
                       inactive-color="#ff4949"
                       active-text="已完成"
@@ -392,7 +392,6 @@
                 </el-col>
               </el-row>
             </el-col>
-            
           </el-row>
           <el-row :gutter="140">
             <!-- 第四行第一列 -->
@@ -469,7 +468,42 @@
                 </el-col>
               </el-row>
             </el-col>
-            
+            <el-col :span="12">
+              <el-row :gutter="40">
+                <el-col :span="12">
+                  <div class="grid-content bg-purple text-left">
+                    <i class="iconfont icon-pingshen"></i>
+                    <span class="red">样机评审完成时间</span>
+                  </div>
+                </el-col>
+                <el-col :span="12">
+                  <div class="grid-content bg-purple text-right">
+                    <el-date-picker
+                      v-model="formData.prototype_date"
+                      type="date"
+                      placeholder="选择日期"
+                      size="medium"
+                    >
+                    </el-date-picker>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-row :gutter="20">
+                <el-col :span="8">
+                  <div class="grid-content bg-purple text-left">
+                    <el-switch
+                      style="display: block"
+                      v-model="formData.prototype_state"
+                      active-color="#13ce66"
+                      inactive-color="#ff4949"
+                      active-text="已完成"
+                      inactive-text="未完成"
+                    >
+                    </el-switch>
+                  </div>
+                </el-col>
+              </el-row>
+            </el-col>
           </el-row>
           <el-row :gutter="140">
             <!-- 第五行第一列 -->
@@ -675,7 +709,7 @@ export default {
   text-align: right;
 }
 .red {
-  /* color: red; */
+  color: red;
 }
 .green {
   color: lightgreen;

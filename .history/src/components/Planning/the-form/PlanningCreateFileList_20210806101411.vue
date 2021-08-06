@@ -675,7 +675,7 @@ export default {
   text-align: right;
 }
 .red {
-  /* color: red; */
+  color: red;
 }
 .green {
   color: lightgreen;
