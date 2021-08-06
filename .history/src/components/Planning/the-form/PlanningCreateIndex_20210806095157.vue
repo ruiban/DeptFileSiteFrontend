@@ -270,7 +270,6 @@ export default {
           const section = this.pageBlock.querySelector(`[data-for=${formKey}]`);
           section.removeAttribute("data-tip");
           const partFormData = this.$refs[formKey].formData;
-          this.$refs['anchor'].reRender()
           console.log("partFormData", partFormData);
           Object.assign(fullFormData, partFormData);
         });

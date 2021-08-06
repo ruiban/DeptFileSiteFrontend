@@ -12,6 +12,7 @@
       @click="handleClick(node.label)"
     >
       {{ node.label }}
+      <span v-if="node.tip" class="hightlight-tag">!</span>
     </div>
   </div>
 </template>
@@ -54,6 +55,7 @@ export default {
           subIndex++;
         }
         return {
+          tip: "tip" in item.dataset,
           ismain,
           index: ismain ? mainIndex : `${mainIndex}.${subIndex}`,
           label: item.dataset.section,
@@ -104,6 +106,10 @@ export default {
       }
       return currentSection;
     },
+    reRender() {
+      this.sections = this.getSectionsData(this.pageBlock);
+      this.currentSection = this.getCurrentSection;
+    },
   },
 };
 </script>
@@ -139,5 +145,15 @@ img {
     content: attr(label);
     margin-right: 4px;
   }
+}
+.heiglight-tag {
+  display: inline-block;
+  text-align: center;
+  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  background: crimson;
+  color: #efefef;
 }
 </style>

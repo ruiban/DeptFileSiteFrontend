@@ -31,17 +31,17 @@
       </span>
     </el-dialog>
     <div class="anchor-wrapper">
-      <anchor ref="anchor" :page-block="pageBlock" />
+      <anchor v-if="pageBlock" :page-block="pageBlock" />
     </div>
 
-    <div data-section="基础信息" data-ismain data-for="form1"></div>
+    <div data-section="基础信息" data-ismain></div>
     <keep-alive>
       <planning-create-base-info ref="form1" :data="formDataMap.form1" />
     </keep-alive>
 
-    <div data-section="产品图片" data-ismain data-for="form2"></div>
+    <div data-section="产品图片" data-ismain></div>
     <planning-create-image ref="form2" :data="formDataMap.form2" />
-    <div data-section="文档信息" data-ismain data-for="form3"></div>
+    <div data-section="文档信息" data-ismain></div>
     <planning-create-file-list ref="form3" :data="formDataMap.form3" />
     <el-button
       type="primary"
@@ -55,7 +55,7 @@
 import PlanningCreateBaseInfo from "./PlanningCreateBaseInfo.vue";
 import PlanningCreateImage from "./PlanningCreateImage.vue";
 import PlanningCreateFileList from "./PlanningCreateFileList.vue";
-import Anchor from "./anchor/index.vue";
+import Anchor from "./Anchor.vue";
 import { postRequest } from "@/api/api";
 import { getRequest } from "@/api/api";
 import { uploadFileRequest } from "@/api/api";
@@ -165,11 +165,6 @@ export default {
     this.pageBlock = this.$refs["pageBlock"];
   },
   methods: {
-    reRender() {
-      this.$$nextTick(() => {
-        this.$refs["anchor"].reRender();
-      });
-    },
     //编辑页面获取策划详细数据
     postPlanning() {
       postRequest("/plan/plan_detail", this.params).then((res) => {
@@ -267,17 +262,13 @@ export default {
         const formData = new FormData();
         let fullFormData = {};
         formKeys.map((formKey) => {
-          const section = this.pageBlock.querySelector(`[data-for=${formKey}]`);
-          section.removeAttribute("data-tip");
           const partFormData = this.$refs[formKey].formData;
-          this.$refs['anchor'].reRender()
           console.log("partFormData", partFormData);
           Object.assign(fullFormData, partFormData);
         });
         Object.keys(fullFormData).forEach((key) => {
           formData.append(key, fullFormData[key]);
         });
-
         // 校验结束
         formData.delete("imageList");
         if (fullFormData.imageList) {
@@ -327,15 +318,6 @@ export default {
         });
       } else {
         this.$message.warning("校验未通过");
-        formKeys.map((formKey, index) => {
-          const section = this.pageBlock.querySelector(`[data-for=${formKey}]`);
-          if (!validResults[index]) {
-            section.setAttribute("data-tip", "");
-          } else {
-            section.removeAttribute("data-tip");
-          }
-        });
-        this.$refs["anchor"].reRender();
       }
     },
   },

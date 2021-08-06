@@ -166,9 +166,9 @@ export default {
   },
   methods: {
     reRender() {
-      this.$$nextTick(() => {
-        this.$refs["anchor"].reRender();
-      });
+      this.$$nextTick(()=>{
+        this.$refs['anchor'].reRender()
+      })
     },
     //编辑页面获取策划详细数据
     postPlanning() {
@@ -267,17 +267,13 @@ export default {
         const formData = new FormData();
         let fullFormData = {};
         formKeys.map((formKey) => {
-          const section = this.pageBlock.querySelector(`[data-for=${formKey}]`);
-          section.removeAttribute("data-tip");
           const partFormData = this.$refs[formKey].formData;
-          this.$refs['anchor'].reRender()
           console.log("partFormData", partFormData);
           Object.assign(fullFormData, partFormData);
         });
         Object.keys(fullFormData).forEach((key) => {
           formData.append(key, fullFormData[key]);
         });
-
         // 校验结束
         formData.delete("imageList");
         if (fullFormData.imageList) {
@@ -335,7 +331,6 @@ export default {
             section.removeAttribute("data-tip");
           }
         });
-        this.$refs["anchor"].reRender();
       }
     },
   },
